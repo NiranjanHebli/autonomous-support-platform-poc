@@ -2,3 +2,8 @@
 /data/
 .venv/
 __pycache__/
+.env
+*.json
+*.pyc
+.sync_state
+downloads
