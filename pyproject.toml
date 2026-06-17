@@ -5,8 +5,13 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "datasets>=5.0.0",
     "httpx>=0.28.1",
+    "kaggle>=2.2.2",
+    "lightgbm>=4.6.0",
+    "pandas>=3.0.3",
     "python-dotenv>=1.2.2",
     "rich>=15.0.0",
+    "scikit-learn>=1.9.0",
     "typer>=0.26.7",
 ]
