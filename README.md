@@ -16,6 +16,109 @@ Specifically, this project aims to:
 
 ---
 
+## System Architecture & Integration Plan
+
+The platform is designed around two distinct but complementary pipelines. You can view the complete, end-to-end architecture diagram detailing both pipelines below (or in the [Technical Design Document](docs/TECHNICAL_DESIGN.md#1-architecture-overview)).
+
+### Use Case Diagram
+![Use Case Diagram](docs/diagrams/use_case_diagram.png)
+
+### Architecture Diagram
+
+```mermaid
+%%{init: {'themeVariables': {'clusterBkg': 'transparent', 'background': 'transparent'}}}%%
+flowchart TB
+    subgraph ClientLayer ["Client Layer"]
+        Social["Social Media Channels"]
+        UI["Agent UI / Web App"]
+    end
+
+    subgraph Part2 ["Part 2: Social Media Classification"]
+        Matrix["Matrix Bot"]
+        ClassifierApp["LightGBM + TF-IDF Classifier"]
+    end
+
+    subgraph Part1 ["Part 1: Copilot Backend (FastAPI)"]
+        PII["PII Masker<br>(spaCy NER)"]
+        RAGRouter["Intent Router"]
+        Retriever["Retriever Engine"]
+        Prompter["Prompt Assembler"]
+        QCritic["Quality Critic Layer"]
+    end
+
+    subgraph AIEngines ["AI Inference Engines (Local)"]
+        Embedder[["Sentence Transformers<br>all-MiniLM-L6-v2"]]
+        Ollama[["Ollama LLM Server<br>llama3.1:8b"]]
+    end
+
+    subgraph DataStorage ["Data Storage"]
+        PolicyFiles[("Policy Documents<br>(Markdown)")]
+        Chroma[("ChromaDB<br>(Vector Store)")]
+    end
+
+    %% Classification Flow
+    Social -->|Inbound Messages| Matrix
+    Matrix -->|Text| ClassifierApp
+    ClassifierApp -->|Routed Ticket| UI
+
+    %% RAG Flow
+    UI -->|Request Response Draft| PII
+    PII --> RAGRouter
+    RAGRouter --> Retriever
+    
+    %% Retrieval
+    Retriever -->|1. Embed Query| Embedder
+    Retriever <-->|2. Semantic Search| Chroma
+    Retriever --> Prompter
+    
+    %% Generation & Critique
+    Prompter <-->|3. Generate Draft| Ollama
+    Prompter --> QCritic
+    QCritic <-->|4. Validate Groundedness| Ollama
+    QCritic -->|5. Return Approved Draft| UI
+
+    %% Ingestion Flow
+    PolicyFiles -.->|Chunking Script| Embedder
+    Embedder -.->|Upsert Vectors| Chroma
+
+    %% Styling
+    style Social fill:#424242,color:#fff
+    style UI fill:#e65100,color:#fff
+    style Matrix fill:#1565c0,color:#fff
+    style ClassifierApp fill:#0277bd,color:#fff
+    style PII fill:#b71c1c,color:#fff
+    style RAGRouter fill:#4a148c,color:#fff
+    style Retriever fill:#311b92,color:#fff
+    style Prompter fill:#0d47a1,color:#fff
+    style QCritic fill:#1b5e20,color:#fff
+    style Embedder fill:#455a64,color:#fff
+    style Ollama fill:#ff8f00,color:#fff
+    style PolicyFiles fill:#263238,color:#fff
+    style Chroma fill:#263238,color:#fff
+```
+
+
+### 1. Classification Pipeline (Social Media Triage)
+A fast, lightweight, and GPU-free machine learning pipeline (TF-IDF + LightGBM). It automatically ingests inbound messages from social media channels (via Matrix), cleans the text, and classifies the intent and category (e.g., Refund, Technical Support). 
+
+### 2. RAG Copilot Backend
+A Retrieval-Augmented Generation pipeline using local LLMs (Ollama) and Vector Search (ChromaDB). It takes a classified ticket, retrieves relevant Markdown policies, and synthesizes a highly grounded, citable draft response for the support agent. It also features a "Quality Critic" layer that evaluates the draft against hallucinations before it's ever shown to the agent.
+
+### Future Integration
+Currently, these two pipelines operate independently as proof-of-concept endpoints. In the future, they will be tightly integrated:
+1. The **Classification Pipeline** will intercept raw social media messages in real-time, tag them with an intent, and automatically route them to department-specific Agent rooms in the Matrix client.
+2. Once routed, an Agent opening the ticket will automatically trigger the **RAG Copilot Backend**.
+3. The Copilot will read the ticket, retrieve the relevant policy context, and present a pre-written, highly accurate "Pending Approval" draft in the Agent UI, drastically reducing the time it takes to resolve the ticket.
+
+## Observability (Langfuse Tracing)
+
+The entire pipeline is instrumented with [Langfuse](https://langfuse.com/) for full observability. Every inference call, token usage, latency metric, and retrieved context chunk is traced and logged in real-time, allowing developers to inspect the exact prompt assembly and groundedness evaluation for any ticket.
+
+
+![Langfuse Tracing Dashboard](logs/dashboard_langfuse.jpeg)
+
+---
+
 ## Setup and Run
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management. No manual virtual environment activation is needed.

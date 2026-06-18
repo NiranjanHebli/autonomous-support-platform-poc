@@ -6,11 +6,84 @@
 **Last Updated:** June 2026
 
 ---
+> **Note:** Initial architecture diagrams generated using Cloudairy were drafts and are saved in the `docs` folder.
+
 ## 1. Architecture Overview
 
 The system is a multi-stage RAG (Retrieval-Augmented Generation) pipeline. Every ticket passes through the following sequential stages before a draft response is presented to the agent:
 
-![Architecture Diagram](../diagrams/architecture-diagram.jpeg)
+```mermaid
+%%{init: {'themeVariables': {'clusterBkg': 'transparent', 'background': 'transparent'}}}%%
+flowchart TB
+    subgraph ClientLayer ["Client Layer"]
+        Social["Social Media Channels"]
+        UI["Agent UI / Web App"]
+    end
+
+    subgraph Part2 ["Part 2: Social Media Classification"]
+        Matrix["Matrix Bot"]
+        ClassifierApp["LightGBM + TF-IDF Classifier"]
+    end
+
+    subgraph Part1 ["Part 1: Copilot Backend (FastAPI)"]
+        PII["PII Masker<br>(spaCy NER)"]
+        RAGRouter["Intent Router"]
+        Retriever["Retriever Engine"]
+        Prompter["Prompt Assembler"]
+        QCritic["Quality Critic Layer"]
+    end
+
+    subgraph AIEngines ["AI Inference Engines (Local)"]
+        Embedder[["Sentence Transformers<br>all-MiniLM-L6-v2"]]
+        Ollama[["Ollama LLM Server<br>llama3.1:8b"]]
+    end
+
+    subgraph DataStorage ["Data Storage"]
+        PolicyFiles[("Policy Documents<br>(Markdown)")]
+        Chroma[("ChromaDB<br>(Vector Store)")]
+    end
+
+    %% Classification Flow
+    Social -->|Inbound Messages| Matrix
+    Matrix -->|Text| ClassifierApp
+    ClassifierApp -->|Routed Ticket| UI
+
+    %% RAG Flow
+    UI -->|Request Response Draft| PII
+    PII --> RAGRouter
+    RAGRouter --> Retriever
+    
+    %% Retrieval
+    Retriever -->|1. Embed Query| Embedder
+    Retriever <-->|2. Semantic Search| Chroma
+    Retriever --> Prompter
+    
+    %% Generation & Critique
+    Prompter <-->|3. Generate Draft| Ollama
+    Prompter --> QCritic
+    QCritic <-->|4. Validate Groundedness| Ollama
+    QCritic -->|5. Return Approved Draft| UI
+
+    %% Ingestion Flow
+    PolicyFiles -.->|Chunking Script| Embedder
+    Embedder -.->|Upsert Vectors| Chroma
+
+    %% Styling
+    style Social fill:#424242,color:#fff
+    style UI fill:#e65100,color:#fff
+    style Matrix fill:#1565c0,color:#fff
+    style ClassifierApp fill:#0277bd,color:#fff
+    style PII fill:#b71c1c,color:#fff
+    style RAGRouter fill:#4a148c,color:#fff
+    style Retriever fill:#311b92,color:#fff
+    style Prompter fill:#0d47a1,color:#fff
+    style QCritic fill:#1b5e20,color:#fff
+    style Embedder fill:#455a64,color:#fff
+    style Ollama fill:#ff8f00,color:#fff
+    style PolicyFiles fill:#263238,color:#fff
+    style Chroma fill:#263238,color:#fff
+```
+
 
 ## 2. Sequence Diagram 
 ```mermaid
@@ -103,9 +176,10 @@ flowchart TD
 
 ### 2.4 Retriever
 
-**Purpose:** Fetch the top-5 semantically relevant policy chunks from ChromaDB.
+**Purpose:** Fetch the top-8 semantically relevant policy chunks from ChromaDB.
 
 **Implementation:**
+- Chunking Strategy: Semantic paragraph chunking with topic prefix (cap at 150 words)
 - Embedding model: `all-MiniLM-L6-v2` (sentence-transformers, local, 384-dimensional vectors)
 - Vector store: ChromaDB (local persistent store in `/data/chroma_store/`)
 - Query: Embedded masked ticket text
@@ -136,7 +210,7 @@ Retrieved Context:
 Customer Query:
 <masked ticket text>
 
-Draft a concise, professional reply. At the end, cite the source clause used.
+Draft a concise, professional reply synthesizing the multi-chunk context. Prioritize relevance and use strict citation formats for the source clauses used.
 ```
 
 ### 2.6 LLM Generator
@@ -324,13 +398,34 @@ class DraftResponse(BaseModel):
 
 ## 11. Pipeline Overview
 
-```
-Social Media Message Ingest
-    -> Text Cleaning (strip whitespace / newlines)
-    -> TF-IDF Vectorization (10k features, English stop words)
-    -> LightGBM Classifiers (Category & Intent, trained separately)
-    -> Confidence Threshold Filter (< 0.60 defaults to 'UNDEFINED')
-    -> Structured JSON Output
+```mermaid
+flowchart TD
+    Input([Social Media Message Ingest])
+    
+    Step1["Text Cleaning<br>(strip whitespace / newlines)"]
+    Step2["TF-IDF Vectorization<br>(10k features, English stop words)"]
+    Step3["LightGBM Classifiers<br>(Category & Intent, trained separately)"]
+    Step4{"Confidence Filter<br>(>= 0.60?)"}
+    
+    OutputJSON([Structured JSON Output])
+    OutputUndefined([Defaults to 'UNDEFINED'])
+    
+    Input --> Step1
+    Step1 --> Step2
+    Step2 --> Step3
+    Step3 --> Step4
+    
+    Step4 -- "Yes" --> OutputJSON
+    Step4 -- "No" --> OutputUndefined
+    
+    %% Styling
+    style Input fill:#424242,stroke:#212121,stroke-width:2px,color:#ffffff
+    style Step1 fill:#1565c0,stroke:#003c8f,stroke-width:2px,color:#ffffff
+    style Step2 fill:#0277bd,stroke:#004c8c,stroke-width:2px,color:#ffffff
+    style Step3 fill:#00838f,stroke:#005662,stroke-width:2px,color:#ffffff
+    style Step4 fill:#2e7d32,stroke:#005005,stroke-width:2px,color:#ffffff
+    style OutputJSON fill:#e65100,stroke:#ac1900,stroke-width:2px,color:#ffffff
+    style OutputUndefined fill:#c62828,stroke:#8e0000,stroke-width:2px,color:#ffffff
 ```
 
 ---
