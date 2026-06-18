@@ -45,7 +45,7 @@ def get_langfuse_decorator():
         return _noop_observe
 
     try:
-        from langfuse.decorators import observe
+        from langfuse import observe
         from langfuse import Langfuse
 
         # Validate the connection on startup
@@ -54,7 +54,7 @@ def get_langfuse_decorator():
             secret_key=secret_key,
             host=host,
         )
-        print(f"[observability] Langfuse connected → {host}")
+        print(f"[observability] Langfuse connected -> {host}")
         return observe
     except Exception as e:
         print(f"[observability] Langfuse init failed ({e}). Running without tracing.")

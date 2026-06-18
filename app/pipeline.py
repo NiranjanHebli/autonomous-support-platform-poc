@@ -1,5 +1,5 @@
 """
-Orchestrates the full RAG pipeline: retrieve → generate.
+Orchestrates the full RAG pipeline: retrieve -> generate.
 This is the single entrypoint used by:
   - eval/evaluate.py (Ragas scoring)
   - experiments/ (metric-driven experiments)
@@ -65,6 +65,7 @@ def run(query: str, top_k: int = DEFAULT_TOP_K) -> dict:
     return {
         "query": query,
         "answer": result["answer"],
+        "citations": result.get("citations", []),
         "contexts": [c["text"] for c in chunks],  # Ragas needs raw texts
         "cited_chunks": result["cited_chunks"],
         "retrieved_chunks": chunks,

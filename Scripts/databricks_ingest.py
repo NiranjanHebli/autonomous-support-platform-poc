@@ -60,7 +60,7 @@ def ingest_messages(access_token: str, room_id: str):
 
     since_token = load_state()
     print(
-        f"Syncing messages since token: {since_token[:15] + '...' if since_token else 'BEGINNING'}"
+        f"Syncing messages since token: {since_token if since_token else 'BEGINNING'}"
     )
 
     # 1. Fetch new events

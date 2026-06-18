@@ -29,7 +29,7 @@ CHUNK_MIN_WORDS = 30
 CHUNK_MAX_WORDS = 150
 
 # Retrieval Defaults
-DEFAULT_TOP_K = 5
+DEFAULT_TOP_K = 8
 
 # ---------------------------------------------------------------------------
 # Evaluation Targets

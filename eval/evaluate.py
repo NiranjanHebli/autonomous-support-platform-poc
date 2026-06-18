@@ -81,7 +81,7 @@ def run_pipeline_on_golden_set(golden_rows: list[dict]) -> list[dict]:
         ground_truth = row["ground_truth_answer"]
         category = row["category"]
 
-        console.print(f"[dim][{i:02d}/{len(golden_rows)}] {question[:70]}...[/dim]")
+        console.print(f"[dim][{i:02d}/{len(golden_rows)}] {question}[/dim]")
 
         try:
             output = run(question, top_k=DEFAULT_TOP_K)

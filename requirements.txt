@@ -9,6 +9,7 @@ nltk>=3.9.4
 # RAG pipeline
 chromadb>=0.6.0
 sentence-transformers>=5.6.0
+rank_bm25>=0.2.2
 
 # LLM integrations
 openai>=1.0.0
