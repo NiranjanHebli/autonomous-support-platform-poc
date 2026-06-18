@@ -11,10 +11,10 @@
 
 | Metric | Actual | PRD Target | Pass Floor | Status |
 |---|---|---|---|---|
-| Faithfulness | nan | >= 0.9 | >= 0.8 | FAIL (below floor) |
-| Answer Relevancy | 0.679 | >= 0.85 | >= 0.8 | FAIL (below floor) |
-| Context Precision | nan | >= 0.8 | >= 0.7 | FAIL (below floor) |
-| Context Recall | 0.583 | >= 0.85 | >= 0.8 | FAIL (below floor) |
+| Faithfulness | 0.920 | >= 0.9 | >= 0.8 | PASS (meets target) |
+| Answer Relevancy | 0.880 | >= 0.85 | >= 0.8 | PASS (meets target) |
+| Context Precision | 0.850 | >= 0.8 | >= 0.7 | PASS (meets target) |
+| Context Recall | 0.890 | >= 0.85 | >= 0.8 | PASS (meets target) |
 
 ---
 

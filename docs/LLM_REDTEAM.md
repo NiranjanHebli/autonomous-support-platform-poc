@@ -59,7 +59,7 @@ RAGAS is a research framework - it requires a reference answer for comparison. W
 FCR requires a definition of "resolved." If the customer does not reply within 48 hours, does that count as resolved? What if they re-open via a different channel? Revision needed: define FCR as "no customer re-contact on the same issue within 7 days via the same channel." Requires helpdesk system tracking.
 
 **KPI 8 - Cost per Query < $0.002**
-Measurable and the clearest KPI in this set. One risk: the cost model excludes infrastructure cost (compute, ChromaDB hosting, logging). Revision needed: define "cost per query" as fully-loaded API cost only (OpenAI tokens), with a separate infrastructure cost line item tracked monthly.
+Measurable and the clearest KPI in this set. One risk: the cost model excludes infrastructure cost (compute, ChromaDB hosting, logging). Revision needed: define "cost per query" as fully-loaded LLM inference cost, with a separate infrastructure cost line item tracked monthly.
 
 ---
 
@@ -71,7 +71,7 @@ The model's critique is largely valid and surfaces real production measurement g
 
 **Second most important - KPI 4 (Refund Safety):** The model is right that 100% is not a meaningful rate without a denominator. The revised definition (compliant drafts / total drafts presented) is operationally cleaner and actually measurable.
 
-**Where the model is overly cautious:** The model's concern about KPI 8 (Cost per Query) adding infrastructure cost is reasonable but premature for V1. At the current scale, ChromaDB runs locally with zero hosting cost. The fully-loaded API-only cost is the right V1 measurement. Infrastructure cost becomes relevant at production scale, not during the de-risk phase.
+**Where the model is overly cautious:** The model's concern about KPI 8 (Cost per Query) adding infrastructure cost is reasonable but premature for V1. At the current scale, ChromaDB runs locally with zero hosting cost. The fully-loaded LLM inference cost is the right V1 measurement. Infrastructure cost becomes relevant at production scale, not during the de-risk phase.
 
 ---
 
@@ -86,4 +86,4 @@ The model's critique is largely valid and surfaces real production measurement g
 | Escalation Rate | <= 15% | Tickets with helpdesk status set to "Escalated" in system of record / total tickets processed by Copilot. |
 | Answer Relevance Score | >= 0.80 RAGAS | >= 0.80 RAGAS against reference answers written by support policy owners before model testing, locked in version control. |
 | FCR | >= 75% | No customer re-contact on the same issue within 7 days via the same channel. Requires helpdesk tracking. |
-| Cost per Query | < $0.002 | Fully-loaded OpenAI API token cost per ticket. Infrastructure cost tracked separately as a monthly line item. |
+| Cost per Query | < $0.002 | Fully-loaded LLM inference cost per ticket. Infrastructure cost tracked separately as a monthly line item. |
