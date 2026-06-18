@@ -3,20 +3,12 @@ Centralized LLM logic. Isolates initialization and API calls from business logic
 """
 
 import time
-from groq import Groq, RateLimitError
-from core.utils import ensure_env
-from core.config import GROQ_MODEL, EMBEDDING_MODEL
+from core.config import OLLAMA_MODEL, EMBEDDING_MODEL
 
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 from ragas.llms import LangchainLLMWrapper
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from ragas.embeddings import LangchainEmbeddingsWrapper
-
-
-def get_llm_client() -> Groq:
-    """Returns a configured Groq client using the strict ensure_env utility."""
-    api_key = ensure_env("GROQ_API_KEY")
-    return Groq(api_key=api_key)
 
 
 def generate_completion(
@@ -26,45 +18,44 @@ def generate_completion(
     temperature: float = 0.2,
 ) -> dict:
     """
-    Standard generation call wrapper for Groq with automatic retry on rate limits (429).
+    Standard generation call wrapper for Ollama.
 
     Returns:
         dict: containing "answer", "prompt_tokens", "completion_tokens", and "model".
     """
-    client = get_llm_client()
+    llm = ChatOllama(
+        model=OLLAMA_MODEL,
+        temperature=temperature,
+        num_predict=max_tokens,
+    )
 
-    max_retries = 5
-    base_delay = 5.0
+    messages = [
+        ("system", system_prompt),
+        ("human", user_message),
+    ]
 
-    for attempt in range(max_retries):
-        try:
-            response = client.chat.completions.create(
-                model=GROQ_MODEL,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_message},
-                ],
-            )
-            return {
-                "answer": response.choices[0].message.content.strip(),
-                "prompt_tokens": response.usage.prompt_tokens,
-                "completion_tokens": response.usage.completion_tokens,
-                "model": response.model,
-            }
-        except RateLimitError as e:
-            if attempt == max_retries - 1:
-                raise e
-            # Wait with exponential backoff
-            wait_time = base_delay * (2**attempt)
-            time.sleep(wait_time)
+    response = llm.invoke(messages)
+
+    # Extract usage metrics if available, otherwise default to 0
+    prompt_tokens = 0
+    completion_tokens = 0
+    if hasattr(response, "response_metadata") and response.response_metadata:
+        prompt_tokens = response.response_metadata.get("prompt_eval_count", 0)
+        completion_tokens = response.response_metadata.get("eval_count", 0)
+
+    return {
+        "answer": response.content.strip(),
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+        "model": OLLAMA_MODEL,
+    }
 
 
 def get_ragas_llm():
-    """Build Ragas-compatible LLM wrapper using Groq."""
-    api_key = ensure_env("GROQ_API_KEY")
-    llm = ChatGroq(model=GROQ_MODEL, api_key=api_key, temperature=0.0)
+    """Build Ragas-compatible LLM wrapper using Ollama (local, no rate limits)."""
+    from langchain_ollama import ChatOllama
+
+    llm = ChatOllama(model=OLLAMA_MODEL, temperature=0.0)
     return LangchainLLMWrapper(llm)
 
 

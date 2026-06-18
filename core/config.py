@@ -22,14 +22,14 @@ SCORECARD_PATH = ROOT_DIR / "eval" / "scorecard.md"
 # ---------------------------------------------------------------------------
 COLLECTION_NAME = "cartly_policies"
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
-GROQ_MODEL = "llama-3.1-8b-instant"
+OLLAMA_MODEL = "llama3.1:8b"
 
-# Chunking Parameters (from spike)
-CHUNK_MIN_WORDS = 50
-CHUNK_MAX_WORDS = 200
+# Chunking strategy: semantic paragraph chunking with topic prefix
+CHUNK_MIN_WORDS = 30
+CHUNK_MAX_WORDS = 150
 
 # Retrieval Defaults
-DEFAULT_TOP_K = 3
+DEFAULT_TOP_K = 5
 
 # ---------------------------------------------------------------------------
 # Evaluation Targets
