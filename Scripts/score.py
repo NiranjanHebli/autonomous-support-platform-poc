@@ -1,5 +1,6 @@
 import pickle
 import sys
+from Scripts.text_preprocessing import preprocess_text, BM25Transformer
 
 def load_artifacts():
     try:

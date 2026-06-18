@@ -5,3 +5,5 @@ __pycache__
 *.pyc
 .sync_state
 downloads
+todo.md
+*.pkl
