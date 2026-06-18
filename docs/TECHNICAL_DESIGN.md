@@ -258,3 +258,131 @@ class DraftResponse(BaseModel):
 - No cloud deployment required for the de-risk spike; local execution is sufficient
 
 ---
+
+---
+
+# Part 2 — Classification Pipeline Technical Design
+## Social Media Intent Routing (TF-IDF / LightGBM)
+
+**Author:** Niranjan Hebli & Bryson Gracias
+**Last Updated:** June 2026
+
+---
+
+## 6. Problem Statement
+
+**Problem + Cost:** Customer support agents are spending ~30% of their time manually reading and triaging inbound Social Media messages to the correct department (e.g., Billing, Tech Support, Refunds). This manual triage costs approximately **$4,500/month** in agent hours and delays first-response times by an average of **45 minutes**.
+
+---
+
+## 7. User Stories
+
+| Persona | User Story |
+|---|---|
+| Customer | As a customer, I want my support query to reach the correct department immediately so that my issue is resolved faster. |
+| Support Agent | As a support agent, I want incoming Social Media messages to be pre-categorized so that I only see tickets relevant to my expertise. |
+| Support Manager | As a support manager, I want to see a confidence score for automated routing so I can review low-confidence categorizations. |
+
+---
+
+## 8. Scope
+
+**In Scope:**
+- Categorization of English text messages from Social Media
+- Predicting Category and Intent
+- Filtering out low-confidence (< 0.60) predictions (defaults to `UNDEFINED`)
+
+**Out of Scope:**
+- Voice / audio message classification
+- Automated ticket resolution (bot replies)
+- Multi-lingual support
+
+---
+
+## 9. Requirements
+
+### Functional
+- Model must predict Intent and Category from a text string
+- Pipeline must fall back to `UNDEFINED` if confidence is below 0.60
+
+### Non-Functional
+- Inference latency under 200ms per message
+- Model must run locally without cloud GPU dependencies
+
+---
+
+## 10. KPIs
+
+| KPI | Definition | Target | Floor |
+|---|---|---|---|
+| **Macro F1-Score** | Harmonic mean of precision and recall across all intents | > 0.85 | 0.75 |
+| **Intent Match Rate** | % of messages where predicted intent exactly matches human labels | > 90% | 80% |
+| **p95 Latency** | Time to run text through TF-IDF and LightGBM inference | < 50ms | < 200ms |
+| **Automated Route Rate** | % of inbound Social Media messages successfully categorized (confidence > 0.60) without human intervention | > 75% | 60% |
+
+---
+
+## 11. Pipeline Overview
+
+```
+Social Media Message Ingest
+    → Text Cleaning (strip whitespace / newlines)
+    → TF-IDF Vectorization (10k features, English stop words)
+    → LightGBM Classifiers (Category & Intent, trained separately)
+    → Confidence Threshold Filter (< 0.60 defaults to 'UNDEFINED')
+    → Structured JSON Output
+```
+
+---
+
+## 12. Data Contracts
+
+### Input Payload (from Matrix Client)
+
+```json
+{
+  "room_id": "!xyz:matrix.org",
+  "event_id": "$abc123def",
+  "sender": "@customer:matrix.org",
+  "text": "I need help claiming refund for my returned order."
+}
+```
+
+### Classification Output (`score.py`)
+
+```json
+{
+  "event_id": "$abc123def",
+  "predicted_intent": "refund_request",
+  "intent_confidence": 0.8921,
+  "predicted_category": "REFUND",
+  "category_confidence": 0.9104
+}
+```
+
+---
+
+## 13. Model Choice Justification
+
+**LightGBM + TF-IDF** was selected over deep learning embeddings (e.g., Transformers) for the following reasons:
+
+| Criterion | LightGBM + TF-IDF | Transformer Embeddings |
+|---|---|---|
+| GPU required | No | Yes (or slow CPU inference) |
+| Local inference latency | < 50ms | 200ms–2s |
+| Deployment complexity | Low (single `.pkl` file) | High (model server required) |
+| Typo robustness | Low (exact-match) | High (semantic) |
+| Training data required | Low (< 1k examples) | High (fine-tuning needed) |
+
+**Verdict for V1:** LightGBM + TF-IDF is the right choice for a lightweight, GPU-free local deployment. Typo robustness is the known tradeoff (see [RISK_REGISTER.md](RISK_REGISTER.md) and [FINDINGS.md](FINDINGS.md)).
+
+---
+
+## 14. Bounded Downstream Action
+
+When classification confidence exceeds 0.60, the Matrix bot performs one of the following bounded actions:
+
+- Appends a colored department tag to the message (e.g., `[ACCOUNT_MANAGEMENT]`)
+- Forwards the message event to the corresponding department-specific Matrix room
+
+No automated resolution or reply is sent to the customer. A human agent in the routed room handles the ticket.

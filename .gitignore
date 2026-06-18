@@ -9,3 +9,4 @@ __pycache__/
 downloads
 todo.md
 *.pkl
+.DS_Store
