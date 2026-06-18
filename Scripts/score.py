@@ -1,20 +1,25 @@
 import pickle
 import sys
+import os
+import warnings
 from Scripts.text_preprocessing import preprocess_text, BM25Transformer
 
+warnings.filterwarnings("ignore", category=UserWarning, message="X does not have valid feature names")
+
 def load_artifacts():
+    base_dir = os.path.dirname(__file__)
     try:
-        with open("vectorizer.pkl", "rb") as f:
+        with open(os.path.join(base_dir, "vectorizer.pkl"), "rb") as f:
             vectorizer = pickle.load(f)
             
-        with open("model_intent.pkl", "rb") as f:
+        with open(os.path.join(base_dir, "model_intent.pkl"), "rb") as f:
             model_intent = pickle.load(f)
-        with open("label_encoder_intent.pkl", "rb") as f:
+        with open(os.path.join(base_dir, "label_encoder_intent.pkl"), "rb") as f:
             le_intent = pickle.load(f)
             
-        with open("model_category.pkl", "rb") as f:
+        with open(os.path.join(base_dir, "model_category.pkl"), "rb") as f:
             model_category = pickle.load(f)
-        with open("label_encoder_category.pkl", "rb") as f:
+        with open(os.path.join(base_dir, "label_encoder_category.pkl"), "rb") as f:
             le_category = pickle.load(f)
             
         return vectorizer, model_intent, le_intent, model_category, le_category
