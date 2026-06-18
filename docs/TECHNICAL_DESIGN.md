@@ -58,7 +58,7 @@ flowchart TD
 
 ### 2.1 PII Masker
 
-**Purpose:** Ensure no raw customer data (name, email, order ID, phone number) is ever sent to an external API.
+**Purpose:** Ensure no raw customer data (name, email, order ID, phone number) is ever sent to an LLM provider API.
 
 **Implementation:**
 - Pre-processing step runs locally before any API call
@@ -67,7 +67,7 @@ flowchart TD
 - Masked tokens are replaced with typed placeholders: `[EMAIL]`, `[ORDER_ID]`, `[CUSTOMER_NAME]`
 - Original values stored in a local session context map for re-insertion into the agent UI display only
 
-**Failure mode:** If masking fails to parse (malformed input), the pipeline halts and returns a human-only fallback before hitting any external API.
+**Failure mode:** If masking fails to parse (malformed input), the pipeline halts and returns a human-only fallback before hitting any LLM API.
 
 ### 2.2 Intent Classifier
 
@@ -81,7 +81,7 @@ flowchart TD
 - `product_question`
 
 **Implementation:**
-- Model: gpt-4o-mini (zero-shot, no fine-tuning required for V1)
+- Model: llama3.1:8b via local Ollama (zero-shot, no fine-tuning required for V1)
 - Prompt: System prompt defines each label with a one-sentence definition. User message is the masked ticket text.
 - Output: Structured JSON `{"intent": "refund_request", "confidence": 0.91}`
 - Fallback: If confidence is below 0.5, route to `unknown` intent which triggers the human-only fallback path
@@ -103,14 +103,14 @@ flowchart TD
 
 ### 2.4 Retriever
 
-**Purpose:** Fetch the top-3 semantically relevant policy chunks from ChromaDB.
+**Purpose:** Fetch the top-5 semantically relevant policy chunks from ChromaDB.
 
 **Implementation:**
-- Embedding model: `text-embedding-3-small` (1,536-dimensional vectors, $0.00002/1K tokens)
+- Embedding model: `all-MiniLM-L6-v2` (sentence-transformers, local, 384-dimensional vectors)
 - Vector store: ChromaDB (local persistent store in `/data/chroma_store/`)
 - Query: Embedded masked ticket text
-- Top-k: 3 chunks per collection queried
-- Similarity threshold: Cosine similarity score must be ≥ 0.6 for a chunk to be included. Chunks below this threshold are excluded from the prompt context.
+- Top-k: 8 chunks per collection queried
+- Similarity threshold: Cosine similarity score must be >= 0.6 for a chunk to be included. Chunks below this threshold are excluded from the prompt context.
 - Metadata stored per chunk: `doc_name`, `chunk_id`, `indexed_at`, `doc_commit_hash`
 
 **Failure mode:** If zero chunks meet the threshold, the pipeline routes to human-only fallback mode.
@@ -127,10 +127,10 @@ information not present in the retrieved context. If the retrieved context does 
 contain a clear answer, output: "I cannot answer this from the available policy."
 
 Retrieved Context:
-[CHUNK 1 - source: returns_policy.md, chunk_id: rp_007]
+[Source: returns_policy.md]
 <chunk text>
 
-[CHUNK 2 - source: refunds_policy.md, chunk_id: rfp_003]
+[Source: refunds_policy.md]
 <chunk text>
 
 Customer Query:
@@ -141,8 +141,8 @@ Draft a concise, professional reply. At the end, cite the source clause used.
 
 ### 2.6 LLM Generator
 
-**Model:** gpt-4o-mini
-**Temperature:** 0.2 (low temperature for consistent, factual outputs)
+**Model:** Local Ollama llama3.1:8b
+**Temperature:** 0.0 (zero temperature for consistent, factual outputs)
 **Max tokens:** 400 (sufficient for a support reply, prevents runaway generation)
 **Output:** Draft reply text + cited chunk reference
 
@@ -163,11 +163,11 @@ This is well within the NFR-06 target of less than $2.00 per 1,000 queries.
 **Purpose:** Validate that the generated draft is grounded in the retrieved context and does not hallucinate.
 
 **Implementation:**
-- Second LLM call (gpt-4o-mini)
+- Second LLM call (llama3.1:8b via local Ollama)
 - Input: Retrieved chunks + generated draft
 - Critic prompt: "Review this draft response. Does it make any claim not explicitly supported by the retrieved policy clauses? Answer in JSON: `{'is_grounded': true/false, 'violation': 'description or null'}`"
 - Output: `{"is_grounded": true, "violation": null}` or `{"is_grounded": false, "violation": "Draft mentions 7-day window; policy says 5 days"}`
-- If `is_grounded: false` → pipeline routes to human-only fallback, draft is NOT presented
+- If `is_grounded: false` -> pipeline routes to human-only fallback, draft is NOT presented
 
 ### 2.8 Bounded Action Layer
 
@@ -186,7 +186,7 @@ This is well within the NFR-06 target of less than $2.00 per 1,000 queries.
 | Intent classifier confidence below 0.5 | Route to human-only fallback, no retrieval |
 | Zero chunks meet similarity threshold (0.6) | Show "No relevant policy found" fallback state |
 | Quality critic flags hallucination | Suppress draft, show "Low confidence - manual review required" |
-| OpenAI API timeout (>5s) | Return graceful error, show human-only mode, log timeout |
+| LLM API timeout (>15s) | Return graceful error, show human-only mode, log timeout |
 | ChromaDB read failure | Alert on-call, show human-only mode for all tickets until resolved |
 
 ---
@@ -234,8 +234,8 @@ class DraftResponse(BaseModel):
 
 | Model | Use Case | Rationale |
 |---|---|---|
-| `text-embedding-3-small` | Retrieval embedding | Best cost-to-performance ratio for domain-specific semantic search. 1,536 dimensions. Outperforms ada-002 on MTEB benchmarks. |
-| `gpt-4o-mini` | Intent classification, draft generation, quality critic | Strong instruction-following, low cost ($0.00015/1K input tokens), sufficient for structured zero-shot tasks |
+| `all-MiniLM-L6-v2` (sentence-transformers) | Retrieval embedding | Local model, no API cost, 384-dimensional vectors. Chosen for zero-cost local inference and sufficient quality for domain-specific semantic search. |
+| `llama3.1:8b` via Ollama | Draft generation | Low latency (Local Ollama inference), free tier sufficient for dev/eval. Instruction-following quality adequate for policy-grounded drafts at low temperature. |
 | `en_core_web_sm` (spaCy) | PII NER | Runs locally, no API call required, sufficient for PERSON entity detection in English support tickets |
 
 ---
@@ -326,11 +326,11 @@ class DraftResponse(BaseModel):
 
 ```
 Social Media Message Ingest
-    → Text Cleaning (strip whitespace / newlines)
-    → TF-IDF Vectorization (10k features, English stop words)
-    → LightGBM Classifiers (Category & Intent, trained separately)
-    → Confidence Threshold Filter (< 0.60 defaults to 'UNDEFINED')
-    → Structured JSON Output
+    -> Text Cleaning (strip whitespace / newlines)
+    -> TF-IDF Vectorization (10k features, English stop words)
+    -> LightGBM Classifiers (Category & Intent, trained separately)
+    -> Confidence Threshold Filter (< 0.60 defaults to 'UNDEFINED')
+    -> Structured JSON Output
 ```
 
 ---

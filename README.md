@@ -1,5 +1,11 @@
 # Cartly Support Copilot — Autonomous Support Platform POC
 
+![Python](https://img.shields.io/badge/python-3.12%2B-blue)
+![Ollama](https://img.shields.io/badge/LLM-Ollama-blue)
+![ChromaDB](https://img.shields.io/badge/Vector%20DB-ChromaDB-green)
+![Langfuse](https://img.shields.io/badge/Observability-Langfuse-purple)
+![Ragas](https://img.shields.io/badge/Evaluation-Ragas-red)
+
 ## Goal of the Project
 
 The goal of this project is to scope, design, and de-risk the **Cartly Support Copilot**, an agentic AI customer support system.
@@ -7,21 +13,6 @@ The goal of this project is to scope, design, and de-risk the **Cartly Support C
 Specifically, this project aims to:
 - **Contract System Performance**: Define what "good" performance looks like in numbers (KPIs, success metrics) and draft a concrete Product Requirements Document (PRD) and Technical Design Document.
 - **De-risk the Highest Assumption**: Prove that the hardest part of the system (retrieval of policy documents) is highly accurate by building a Python retrieval spike using ChromaDB, comparing different chunking strategies, and establishing retrieval hit-rate metrics.
-
----
-
-## Repository Structure
-
-```
-/app            # End-to-end RAG pipeline (ingest → retrieve → generate)
-/data/policies  # 27 Cartly-representative policy documents (Markdown)
-/docs           # PRD, Technical Design, Risk Register, LLM Red-Team, EXEC_MEMO
-/eval           # Golden evaluation set + Ragas scoring
-/experiments    # Chunking / top-k / prompt experiments with metric deltas
-/observability  # Langfuse tracing screenshots and dashboard
-/scripts        # Data ingestion, preprocessing, training, and scoring scripts
-/spike          # Retrieval de-risk spike and findings
-```
 
 ---
 
@@ -54,6 +45,53 @@ uv run python main.py --help
 
 # Run data ingestion
 uv run python scripts/databricks_ingest.py
+```
+
+### 3. Testing the System
+
+You can manually test the various components of the system using the following commands:
+
+#### Intent Classification & Spike Tests
+```bash
+# 1. Generate the policy dataset
+uv run python scripts/process_hf_dataset.py
+
+# 2. Train the intent classification model
+uv run python scripts/train.py
+
+# 3. Test classification inference
+uv run python scripts/score.py "I need a refund for my order"
+
+# 4. Evaluate typo robustness (generates FINDINGS.md)
+uv run python spike/evaluate_typos.py
+
+# 5. Run the retrieval de-risk spike (outputs hit rate)
+uv run python spike/retrieval_spike.py
+
+# 6. Test the Matrix Client CLI
+uv run python main.py --help
+```
+
+#### RAG Pipeline & Evaluation Tests
+```bash
+# 7. Ingest policies into ChromaDB
+uv run python app/ingest.py
+
+# 8. Test RAG Retrieval (standalone)
+uv run python app/retrieve.py "How do I return an item?"
+
+# 9. Test RAG Generation (standalone smoke test)
+uv run python app/generate.py
+
+# 10. Run 50-question Ragas Golden Evaluation Scorecard (generates eval/scorecard.md)
+uv run python eval/evaluate.py
+
+# 11. Run RAG Pipeline Experiments
+uv run python experiments/exp1_top_k.py
+
+uv run python experiments/exp2_chunk_size.py
+
+uv run python experiments/exp3_system_prompt.py
 ```
 
 ---
@@ -120,7 +158,6 @@ uv run python main.py --help
 # Data Ingestion
 uv run python scripts/databricks_ingest.py
 ```
-
 ---
 
 ## Key Documents
@@ -131,19 +168,10 @@ uv run python scripts/databricks_ingest.py
 | Technical Design | [docs/TECHNICAL_DESIGN.md](docs/TECHNICAL_DESIGN.md) | Architecture for the RAG copilot (Part 1) and classification pipeline (Part 2) |
 | Risk Register | [docs/RISK_REGISTER.md](docs/RISK_REGISTER.md) | Risks for the Copilot (Part 1) and classification pipeline (Part 2) |
 | LLM Red-Team Evaluation | [docs/LLM_REDTEAM.md](docs/LLM_REDTEAM.md) | KPI critique and revised definitions |
-| Executive Memo | [docs/EXEC_MEMO.md](docs/EXEC_MEMO.md) | One-page summary for stakeholders |
+| LLM Red-Team Pass/Fail Gate | [docs/LLM_GATE.md](docs/LLM_GATE.md) | Failing case diagnosis and prompt-based mitigation |
+| Executive Memo | [docs/EXEC_MEMO.md](docs/EXEC_MEMO.md) | Comprehensive Stakeholder memos: Phase 2 Evaluation Scorecard & Phase 1 AI Investment Case |
 | Retrieval Spike Findings | [spike/FINDINGS.md](spike/FINDINGS.md) | Chunking strategy comparison and retrieval hit-rate results |
 | Typo Robustness Findings | [docs/FINDINGS.md](docs/FINDINGS.md) | TF-IDF / BM25 robustness evaluation across three experiments |
+| Project Reflections | [docs/REFLECTION.md](docs/REFLECTION.md) | Week 15 and Week 16 reflections on KPIs, assumptions, constraints, and metrics |
 
 ---
-
-## Reflection
-
-> **Where did the system fail most — retrieval or generation?**
-> *(To be completed after Ragas evaluation in Week 16.)*
-
-> **Did any metric look good while the answer was actually bad?**
-> *(To be completed after golden set evaluation.)*
-
-> **Which Week 15 targets did you hit, miss, or revise after seeing real numbers?**
-> *(To be completed after running experiments.)*

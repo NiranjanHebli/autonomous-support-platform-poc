@@ -60,7 +60,7 @@
 | Intent match rate | **63.3%** |
 | Degradation vs. clean text | **36.7%** |
 
-**Conclusion:** TextBlob spell correction recovers significant accuracy (from 16.7% → 63.3%), but a 36.7% degradation rate is still too high for a production system. TextBlob's dictionary-based corrector cannot handle domain-specific terms (e.g., product names, order IDs) and misidentifies them as misspellings. A better approach (character n-gram subword tokenization or a domain-fine-tuned spell checker) is required before this pipeline can reach production KPI floors.
+**Conclusion:** TextBlob spell correction recovers significant accuracy (from 16.7% -> 63.3%), but a 36.7% degradation rate is still too high for a production system. TextBlob's dictionary-based corrector cannot handle domain-specific terms (e.g., product names, order IDs) and misidentifies them as misspellings. A better approach (character n-gram subword tokenization or a domain-fine-tuned spell checker) is required before this pipeline can reach production KPI floors.
 
 ---
 
