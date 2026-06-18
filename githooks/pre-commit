@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Find python files staged for commit, excluding deleted files
+staged_files=$(git diff --cached --name-only --diff-filter=d | grep '\.py$')
+
+if [ -n "$staged_files" ]; then
+    echo "Running black formatter on staged python files..."
+    
+    # Determine the black command to run
+    if command -v black &> /dev/null; then
+        black_cmd="black"
+    elif [ -f .venv/bin/black ]; then
+        black_cmd=".venv/bin/black"
+    elif [ -f venv/bin/black ]; then
+        black_cmd="venv/bin/black"
+    else
+        echo "========================================================================"
+        echo "ERROR: 'black' formatter is not installed."
+        echo "Please install it in your environment: pip install black"
+        echo "========================================================================"
+        exit 1
+    fi
+
+    # Format the staged python files
+    $black_cmd $staged_files
+
+    # Re-stage the formatted files
+    git add $staged_files
+fi
