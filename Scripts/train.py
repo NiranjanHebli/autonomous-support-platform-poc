@@ -1,8 +1,10 @@
 import pandas as pd
 import lightgbm as lgb
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from text_preprocessing import preprocess_text, BM25Transformer
 import pickle
 import os
 from datasets import load_dataset
@@ -48,8 +50,11 @@ def main():
     # Drop rows where text is missing
     df = df.dropna(subset=[text_col])
     
-    print("TF-IDF Vectorization...")
-    vectorizer = TfidfVectorizer(max_features=10000, stop_words='english')
+    print("BM25 Vectorization with Custom Preprocessing...")
+    vectorizer = Pipeline([
+        ('count', CountVectorizer(analyzer=preprocess_text, max_features=10000)),
+        ('bm25', BM25Transformer())
+    ])
     X = vectorizer.fit_transform(df[text_col])
     
     with open("vectorizer.pkl", "wb") as f:
