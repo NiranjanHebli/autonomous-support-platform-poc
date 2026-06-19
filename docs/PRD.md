@@ -57,8 +57,8 @@ The Copilot is not an autonomous bot that replies to customers. It is an AI assi
 ### In Scope: V1
 
 - Intent classification of incoming support tickets (return, refund, shipping, account, product)
-- Policy retrieval from ChromaDB using semantic search (text-embedding-3-small)
-- Grounded draft reply generation via gpt-4o-mini
+- Policy retrieval from ChromaDB using semantic search (all-MiniLM-L6-v2, local sentence-transformers)
+- Grounded draft reply generation via Local Ollama llama3.1:8b
 - Quality grounding critic (secondary LLM pass)
 - Bounded action: Refund Approval Draft (agent-initiated, human-approved only)
 - Source citation on every draft response
@@ -80,11 +80,11 @@ The Copilot is not an autonomous bot that replies to customers. It is an AI assi
 | Req ID | Requirement | Priority |
 |---|---|---|
 | FR-01 | System must classify ticket intent with a confidence score | P0 |
-| FR-02 | System must retrieve top-3 policy chunks from ChromaDB by cosine similarity | P0 |
+| FR-02 | System must retrieve top-8 policy chunks from ChromaDB by cosine similarity | P0 |
 | FR-03 | System must generate a draft response grounded in retrieved chunks only | P0 |
 | FR-04 | System must cite the source chunk in every draft response | P0 |
 | FR-05 | System must run a secondary quality critic to validate grounding before presenting draft | P0 |
-| FR-06 | System must mask PII (name, email, order ID) before sending data to external APIs | P0 |
+| FR-06 | System must mask PII (name, email, order ID) before sending data to LLM APIs | P0 |
 | FR-07 | When retrieval similarity score is below 0.6, system must present human-only fallback | P0 |
 | FR-08 | Refund Approval Draft must require explicit agent click to confirm | P0 |
 | FR-09 | System must return a draft within 3 seconds at P95 | P1 |
@@ -97,9 +97,9 @@ The Copilot is not an autonomous bot that replies to customers. It is an AI assi
 | Req ID | Requirement | Target |
 |---|---|---|
 | NFR-01 | P95 end-to-end latency | Less than 3 seconds |
-| NFR-02 | Retrieval hit rate (correct chunk in top-3) | Greater than or equal to 80% |
+| NFR-02 | Retrieval hit rate (correct chunk in top-8) | Greater than or equal to 80% |
 | NFR-03 | Groundedness score (critic validates draft) | Greater than or equal to 90% |
-| NFR-04 | PII leakage rate to external APIs | 0% - hard stop |
+| NFR-04 | PII leakage rate to LLM APIs | 0% - hard stop |
 | NFR-05 | System availability (uptime) | Greater than or equal to 99.5% |
 | NFR-06 | Cost per 1,000 queries | Less than $2.00 (see cost model in Technical Design) |
 
@@ -112,7 +112,7 @@ The Copilot is not an autonomous bot that replies to customers. It is an AI assi
 | KPI | Definition | Current Baseline | Target (V1) | Do-Not-Ship Floor |
 |---|---|---|---|---|
 | **Average Handle Time (AHT)** | Mean time from ticket open to agent send | 15 minutes | Less than or equal to 10 minutes | No improvement or regression |
-| **Retrieval Hit Rate** | % of queries where correct policy chunk is in top-3 results | Not measured | Greater than or equal to 80% | Below 75% - do not ship |
+| **Retrieval Hit Rate** | % of queries where correct policy chunk is in top-8 results | Not measured | Greater than or equal to 80% | Below 75% - do not ship |
 | **Groundedness Rate** | % of draft responses that the quality critic validates as grounded | Not measured | Greater than or equal to 90% | Below 85% - do not ship |
 | **Answer Relevance Score** | Semantic similarity between draft response and the retrieved chunk | Not measured | Greater than or equal to 0.80 RAGAS score | Below 0.70 - do not ship |
 | **Escalation Rate** | % of tickets that are escalated to a supervisor | ~25% (estimated) | Less than 15% | Above 20% in production |
@@ -130,7 +130,7 @@ The Copilot is not an autonomous bot that replies to customers. It is an AI assi
 ### Metric Tree (Technical to Business)
 
 ```
-Business KPI: AHT Reduction (15 min → ≤10 min)
+Business KPI: AHT Reduction (15 min -> ≤10 min)
 │
 ├── Retrieval Hit Rate ≥80%
 │       Ensures the correct policy chunk is surfaced - without this, the draft has nothing to ground on.

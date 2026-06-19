@@ -2,3 +2,11 @@
 /data/
 .venv/
 __pycache__/
+.env
+*.json
+*.pyc
+.sync_state
+downloads
+todo.md
+*.pkl
+.DS_Store
