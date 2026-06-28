@@ -1,0 +1,325 @@
+instruction,category,intent,language,agent,onnx_prediction_int,onnx_prediction,onnx_confidence
+I want help to talk with a human agent,CONTACT,contact_human_agent,en,undefined,4,undefined,1.0
+मैं एक मानव एजेंट से बात करने में मदद चाहता हूँ,CONTACT,contact_human_agent,hi,undefined,4,undefined,0.9999915361404419
+আমি একজন মানব এজেন্টের সাথে কথা বলতে সাহায্য চাই,CONTACT,contact_human_agent,bn,undefined,4,undefined,0.9999977350234985
+మానవ ఏజెంట్‌తో మాట్లాడటానికి నాకు సహాయం కావాలి,CONTACT,contact_human_agent,te,undefined,4,undefined,0.9942281246185303
+மனித முகவருடன் பேச எனக்கு உதவி வேண்டும்,CONTACT,contact_human_agent,ta,undefined,2,product,0.3474273979663849
+मला मानवी एजंटशी बोलण्यासाठी मदत हवी आहे,CONTACT,contact_human_agent,mr,undefined,4,undefined,0.9993115663528442
+i cant switch to the premium account,ACCOUNT,switch_account,en,undefined,4,undefined,1.0
+मैं प्रीमियम खाते पर स्विच नहीं कर सकता,ACCOUNT,switch_account,hi,undefined,4,undefined,0.8373402953147888
+আমি প্রিমিয়াম অ্যাকাউন্টে সুইচ করতে পারছি না,ACCOUNT,switch_account,bn,undefined,4,undefined,0.9992035031318665
+నేను ప్రీమియం ఖాతాకు మారలేను,ACCOUNT,switch_account,te,undefined,4,undefined,0.9979735016822815
+என்னால் பிரீமியம் கணக்கிற்கு மாற முடியாது,ACCOUNT,switch_account,ta,undefined,4,undefined,0.4042259156703949
+मी प्रीमियम खात्यावर स्विच करू शकत नाही,ACCOUNT,switch_account,mr,undefined,0,billing,0.5624597072601318
+how to use tye {{Account Type}} account?,ACCOUNT,switch_account,en,undefined,4,undefined,0.9999997615814209
+टाई {{खाता प्रकार}} खाते का उपयोग कैसे करें?,ACCOUNT,switch_account,hi,undefined,4,undefined,0.9985761642456055
+কিভাবে tye {{Account Type}} অ্যাকাউন্ট ব্যবহার করবেন?,ACCOUNT,switch_account,bn,undefined,4,undefined,0.9999992847442627
+టై {{ఖాతా రకం}} ఖాతాను ఎలా ఉపయోగించాలి?,ACCOUNT,switch_account,te,undefined,4,undefined,0.9748397469520569
+டை {{கணக்கு வகை}} கணக்கை எவ்வாறு பயன்படுத்துவது?,ACCOUNT,switch_account,ta,undefined,0,billing,0.4201955795288086
+tye {{Account Type}} खाते कसे वापरावे?,ACCOUNT,switch_account,mr,undefined,4,undefined,0.9999746084213257
+I try to check in which situations can I ask for a refund,REFUND,check_refund_policy,en,billing,0,billing,1.0
+मैं यह जांचने का प्रयास करता हूं कि किन स्थितियों में मैं रिफंड मांग सकता हूं,REFUND,check_refund_policy,hi,billing,0,billing,0.9999315738677979
+আমি চেক করার চেষ্টা করি কোন পরিস্থিতিতে আমি টাকা ফেরত চাইতে পারি,REFUND,check_refund_policy,bn,billing,0,billing,0.9999983310699463
+నేను ఏ సందర్భాలలో వాపసు కోసం అడగవచ్చో తనిఖీ చేయడానికి ప్రయత్నిస్తాను,REFUND,check_refund_policy,te,billing,4,undefined,0.5091230869293213
+எந்தெந்தச் சூழ்நிலைகளில் பணத்தைத் திரும்பக் கேட்கலாம் என்பதைச் சரிபார்க்க முயற்சிக்கிறேன்,REFUND,check_refund_policy,ta,billing,4,undefined,0.653990626335144
+मी कोणत्या परिस्थितीत परतावा मागू शकतो हे तपासण्याचा प्रयत्न करतो,REFUND,check_refund_policy,mr,billing,4,undefined,0.44982364773750305
+I am calling to leave my feedback for your products,FEEDBACK,review,en,product,2,product,0.9999996423721313
+मैं आपके उत्पादों के लिए अपनी प्रतिक्रिया देने के लिए कॉल कर रहा हूं,FEEDBACK,review,hi,product,2,product,0.998813271522522
+আমি আপনার পণ্যের জন্য আমার প্রতিক্রিয়া ছেড়ে কল করছি,FEEDBACK,review,bn,product,2,product,0.9999815225601196
+మీ ఉత్పత్తుల కోసం నా అభిప్రాయాన్ని తెలియజేయడానికి నేను కాల్ చేస్తున్నాను,FEEDBACK,review,te,product,2,product,0.9691333770751953
+உங்கள் தயாரிப்புகளுக்கு எனது கருத்தை தெரிவிக்க நான் அழைக்கிறேன்,FEEDBACK,review,ta,product,2,product,0.5863771438598633
+मी तुमच्या उत्पादनांसाठी माझा अभिप्राय देण्यासाठी कॉल करत आहे,FEEDBACK,review,mr,product,2,product,0.5712953209877014
+I cannot edit my delivery address,SHIPPING,change_shipping_address,en,shipping,3,shipping,1.0
+मैं अपना डिलीवरी पता संपादित नहीं कर सकता,SHIPPING,change_shipping_address,hi,shipping,3,shipping,0.9991821646690369
+আমি আমার বিতরণ ঠিকানা সম্পাদনা করতে পারছি না,SHIPPING,change_shipping_address,bn,shipping,3,shipping,0.9995689988136292
+నేను నా డెలివరీ చిరునామాను సవరించలేను,SHIPPING,change_shipping_address,te,shipping,0,billing,0.5488584637641907
+எனது டெலிவரி முகவரியை என்னால் திருத்த முடியாது,SHIPPING,change_shipping_address,ta,shipping,4,undefined,0.4331943392753601
+मी माझा वितरण पत्ता संपादित करू शकत नाही,SHIPPING,change_shipping_address,mr,shipping,0,billing,0.5139622688293457
+where do I check what hours I can reach customer service?,CONTACT,contact_customer_service,en,undefined,4,undefined,0.9999997615814209
+मैं कहां जांचूं कि मैं ग्राहक सेवा तक कितने बजे पहुंच सकता हूं?,CONTACT,contact_customer_service,hi,undefined,4,undefined,0.9999696016311646
+আমি কোথায় চেক করব কোন ঘন্টায় আমি গ্রাহক পরিষেবাতে পৌঁছতে পারি?,CONTACT,contact_customer_service,bn,undefined,4,undefined,0.9991803765296936
+నేను కస్టమర్ సేవను ఏ గంటలలో చేరుకోగలనని నేను ఎక్కడ తనిఖీ చేయాలి?,CONTACT,contact_customer_service,te,undefined,4,undefined,0.9999099969863892
+வாடிக்கையாளர் சேவையை நான் எந்த மணிநேரத்தில் அடைய முடியும் என்பதை நான் எங்கே சரிபார்க்க வேண்டும்?,CONTACT,contact_customer_service,ta,undefined,0,billing,0.6068764328956604
+मी ग्राहक सेवेपर्यंत कोणत्या तासांपर्यंत पोहोचू शकतो हे मी कुठे तपासू?,CONTACT,contact_customer_service,mr,undefined,3,shipping,0.9145116806030273
+i expect a rebate of {{Currency Symbol}}{{Refund Amount}},REFUND,track_refund,en,billing,0,billing,1.0
+मैं {{मुद्रा चिह्न}}{{रिफंड राशि}} की छूट की उम्मीद करता हूं,REFUND,track_refund,hi,billing,0,billing,0.9934707880020142
+আমি {{মুদ্রার প্রতীক}}{{রিফান্ডের পরিমাণ}} ছাড় আশা করি,REFUND,track_refund,bn,billing,0,billing,0.6947645545005798
+నేను {{కరెన్సీ సింబల్}}{{వాపసు మొత్తం}} తగ్గింపును ఆశిస్తున్నాను,REFUND,track_refund,te,billing,0,billing,0.9415552020072937
+நான் {{நாணயச் சின்னம்}}{{திரும்பத் தொகை}} தள்ளுபடியை எதிர்பார்க்கிறேன்,REFUND,track_refund,ta,billing,4,undefined,0.6256086230278015
+मला {{चलन चिन्ह}}{{परतावा रक्कम}} ची सूट अपेक्षित आहे,REFUND,track_refund,mr,billing,0,billing,0.9903240203857422
+updating purchase {{Order Number}},ORDER,change_order,en,order,1,order,0.9999997615814209
+खरीदारी अपडेट कर रहा है {{ऑर्डर नंबर}},ORDER,change_order,hi,order,4,undefined,0.7490900754928589
+ক্রয় আপডেট করা হচ্ছে {{অর্ডার নম্বর}},ORDER,change_order,bn,order,4,undefined,0.9597156047821045
+కొనుగోలు {{ఆర్డర్ నంబర్}}ని నవీకరిస్తోంది,ORDER,change_order,te,order,4,undefined,0.8785910606384277
+வாங்குதலைப் புதுப்பிக்கிறது {{ஆர்டர் எண்}},ORDER,change_order,ta,order,0,billing,0.6274992227554321
+खरेदी अपडेट करत आहे {{ऑर्डर नंबर}},ORDER,change_order,mr,order,1,order,0.8024523854255676
+"I paid {{Currency Symbol}}{{Refund Amount}} for this product, I need to get a rebate",REFUND,get_refund,en,billing,0,billing,1.0
+"मैंने इस उत्पाद के लिए {{मुद्रा चिह्न}}{{रिफंड राशि}} का भुगतान किया है, मुझे छूट प्राप्त करने की आवश्यकता है",REFUND,get_refund,hi,billing,0,billing,0.9996788501739502
+"আমি এই পণ্যটির জন্য {{মুদ্রার প্রতীক}}{{রিফান্ডের পরিমাণ}} প্রদান করেছি, আমাকে একটি ছাড় পেতে হবে",REFUND,get_refund,bn,billing,1,order,0.7722052931785583
+"నేను ఈ ఉత్పత్తి కోసం {{కరెన్సీ చిహ్నం}}{{వాపసు మొత్తం}} చెల్లించాను, నేను రాయితీ పొందాలి",REFUND,get_refund,te,billing,0,billing,0.5403680801391602
+"இந்தத் தயாரிப்புக்காக நான் {{நாணயச் சின்னம்}}{{ரீபண்ட் தொகை}} செலுத்தினேன், நான் தள்ளுபடி பெற வேண்டும்",REFUND,get_refund,ta,billing,4,undefined,0.747873067855835
+"मी या उत्पादनासाठी {{Currency Symbol}}{{Refund Amount}} दिले, मला सवलत मिळणे आवश्यक आहे",REFUND,get_refund,mr,billing,0,billing,0.9999606609344482
+need assistance to check ur reimbursement policy,REFUND,check_refund_policy,en,billing,0,billing,1.0
+अपनी प्रतिपूर्ति नीति की जाँच करने के लिए सहायता की आवश्यकता है,REFUND,check_refund_policy,hi,billing,0,billing,0.999687910079956
+আপনার প্রতিদান নীতি চেক করতে সহায়তা প্রয়োজন,REFUND,check_refund_policy,bn,billing,1,order,0.6685687303543091
+మీ రీయింబర్స్‌మెంట్ విధానాన్ని తనిఖీ చేయడానికి సహాయం కావాలి,REFUND,check_refund_policy,te,billing,4,undefined,0.8848982453346252
+உங்கள் திருப்பிச் செலுத்தும் கொள்கையை சரிபார்க்க உதவி தேவை,REFUND,check_refund_policy,ta,billing,4,undefined,0.5783477425575256
+तुमची प्रतिपूर्ती धोरण तपासण्यासाठी मदत हवी आहे,REFUND,check_refund_policy,mr,billing,4,undefined,0.7603948712348938
+I need assistance to take a quick look at bill #85632,INVOICE,check_invoice,en,billing,0,billing,0.9999998807907104
+मुझे बिल #85632 पर त्वरित नज़र डालने के लिए सहायता की आवश्यकता है,INVOICE,check_invoice,hi,billing,0,billing,0.99998939037323
+বিল #85632 দ্রুত দেখার জন্য আমার সহায়তা প্রয়োজন,INVOICE,check_invoice,bn,billing,0,billing,0.9868029952049255
+బిల్లు #85632ని త్వరగా పరిశీలించడానికి నాకు సహాయం కావాలి,INVOICE,check_invoice,te,billing,0,billing,0.9902029037475586
+பில் #85632ஐ விரைவாகப் பார்க்க எனக்கு உதவி தேவை,INVOICE,check_invoice,ta,billing,0,billing,0.9431137442588806
+बिल #85632 चा झटपट आढावा घेण्यासाठी मला मदत हवी आहे,INVOICE,check_invoice,mr,billing,0,billing,0.9898121953010559
+I need assistance checking how soon can I expect my delivery,DELIVERY,delivery_period,en,shipping,3,shipping,1.0
+मुझे यह जाँचने में सहायता की आवश्यकता है कि मैं कितनी जल्दी अपनी डिलीवरी की उम्मीद कर सकता हूँ,DELIVERY,delivery_period,hi,shipping,3,shipping,0.999976396560669
+কত তাড়াতাড়ি আমি আমার ডেলিভারি আশা করতে পারি তা পরীক্ষা করার জন্য আমার সহায়তা প্রয়োজন,DELIVERY,delivery_period,bn,shipping,3,shipping,0.9528691172599792
+నా డెలివరీని నేను ఎంత త్వరగా ఆశించవచ్చో తనిఖీ చేయడానికి నాకు సహాయం కావాలి,DELIVERY,delivery_period,te,shipping,0,billing,0.8930118083953857
+எனது டெலிவரியை எவ்வளவு விரைவில் எதிர்பார்க்கலாம் என்பதைச் சரிபார்க்க எனக்கு உதவி தேவை,DELIVERY,delivery_period,ta,shipping,1,order,0.5414096117019653
+मी माझ्या डिलिव्हरीची किती लवकर अपेक्षा करू शकतो हे तपासण्यासाठी मला मदत हवी आहे,DELIVERY,delivery_period,mr,shipping,4,undefined,0.42508113384246826
+I am tring to see the early exit penalty,CANCEL,check_cancellation_fee,en,order,1,order,0.9999994039535522
+मैं शीघ्र निकास दंड देखने का प्रयास कर रहा हूं,CANCEL,check_cancellation_fee,hi,order,0,billing,0.5890384316444397
+আমি তাড়াতাড়ি প্রস্থান পেনাল্টি দেখতে tring করছি,CANCEL,check_cancellation_fee,bn,order,4,undefined,0.6918571591377258
+నేను ముందస్తు నిష్క్రమణ పెనాల్టీని చూడటానికి ప్రయత్నిస్తున్నాను,CANCEL,check_cancellation_fee,te,order,1,order,0.484343022108078
+நான் முன்கூட்டியே வெளியேறும் தண்டனையைப் பார்க்க முயற்சிக்கிறேன்,CANCEL,check_cancellation_fee,ta,order,4,undefined,0.393974632024765
+मी लवकर एक्झिट पेनल्टी पाहण्यासाठी प्रयत्न करत आहे,CANCEL,check_cancellation_fee,mr,order,4,undefined,0.994055986404419
+i want assistance unsubscribing from the newsletter,SUBSCRIPTION,newsletter_subscription,en,product,2,product,0.9999998807907104
+मैं न्यूज़लेटर से सदस्यता समाप्त करने में सहायता चाहता हूँ,SUBSCRIPTION,newsletter_subscription,hi,product,2,product,0.8671911358833313
+আমি নিউজলেটার থেকে সদস্যতা ত্যাগ করতে সহায়তা চাই,SUBSCRIPTION,newsletter_subscription,bn,product,2,product,0.9724823236465454
+నాకు వార్తాలేఖ నుండి చందాను తొలగించడంలో సహాయం కావాలి,SUBSCRIPTION,newsletter_subscription,te,product,2,product,0.8636460304260254
+செய்திமடலில் இருந்து குழுவிலக எனக்கு உதவி வேண்டும்,SUBSCRIPTION,newsletter_subscription,ta,product,0,billing,0.48671913146972656
+मला वृत्तपत्रातून सदस्यता रद्द करण्यासाठी मदत हवी आहे,SUBSCRIPTION,newsletter_subscription,mr,product,0,billing,0.7704760432243347
+there is an issue trying to update the address,SHIPPING,change_shipping_address,en,shipping,3,shipping,0.9999994039535522
+पता अद्यतन करने का प्रयास करने में समस्या आ रही है,SHIPPING,change_shipping_address,hi,shipping,4,undefined,0.9848309755325317
+ঠিকানা আপডেট করার চেষ্টা করা একটি সমস্যা আছে,SHIPPING,change_shipping_address,bn,shipping,4,undefined,0.996895432472229
+చిరునామాను నవీకరించడానికి ప్రయత్నిస్తున్నప్పుడు సమస్య ఉంది,SHIPPING,change_shipping_address,te,shipping,4,undefined,0.764277458190918
+முகவரியைப் புதுப்பிக்கும் முயற்சியில் சிக்கல் உள்ளது,SHIPPING,change_shipping_address,ta,shipping,4,undefined,0.546550452709198
+पत्ता अपडेट करण्याचा प्रयत्न करताना समस्या आहे,SHIPPING,change_shipping_address,mr,shipping,4,undefined,0.9931169748306274
+assistance to notify of issues with online payments,PAYMENT,payment_issue,en,billing,0,billing,0.9999985694885254
+ऑनलाइन भुगतान संबंधी समस्याओं के बारे में सूचित करने में सहायता,PAYMENT,payment_issue,hi,billing,0,billing,0.9998233914375305
+অনলাইন পেমেন্ট সংক্রান্ত সমস্যা সম্পর্কে অবহিত করতে সহায়তা,PAYMENT,payment_issue,bn,billing,0,billing,0.995435893535614
+ఆన్‌లైన్ చెల్లింపులకు సంబంధించిన సమస్యలను తెలియజేయడానికి సహాయం,PAYMENT,payment_issue,te,billing,2,product,0.5134577751159668
+ஆன்லைன் பணம் செலுத்துவதில் உள்ள சிக்கல்களை அறிவிப்பதற்கான உதவி,PAYMENT,payment_issue,ta,billing,1,order,0.3579194247722626
+ऑनलाइन पेमेंटसह समस्या सूचित करण्यासाठी मदत,PAYMENT,payment_issue,mr,billing,0,billing,0.9994394183158875
+can I place an ordewr from {{Delivery Country}}?,DELIVERY,delivery_options,en,shipping,3,shipping,0.9999992847442627
+क्या मैं {{डिलीवरी देश}} से ऑर्डर दे सकता हूँ?,DELIVERY,delivery_options,hi,shipping,3,shipping,0.9998992681503296
+আমি কি {{ডেলিভারি কান্ট্রি}} থেকে অর্ডার দিতে পারি?,DELIVERY,delivery_options,bn,shipping,3,shipping,0.3917950987815857
+నేను {{డెలివరీ కంట్రీ}} నుండి ఆర్డర్ ఇవ్వవచ్చా?,DELIVERY,delivery_options,te,shipping,4,undefined,0.9667091369628906
+{{ டெலிவரி நாட்டிலிருந்து}} நான் ஒரு ஆர்டரை வைக்கலாமா?,DELIVERY,delivery_options,ta,shipping,3,shipping,0.7174745202064514
+मी {{डिलिव्हरी कंट्री}} वरून ऑर्डर देऊ शकतो का?,DELIVERY,delivery_options,mr,shipping,3,shipping,0.852820634841919
+want help sending feedback about a service,FEEDBACK,review,en,product,2,product,1.0
+किसी सेवा के बारे में फीडबैक भेजने में सहायता चाहते हैं,FEEDBACK,review,hi,product,4,undefined,0.9971022009849548
+একটি পরিষেবা সম্পর্কে প্রতিক্রিয়া পাঠাতে সাহায্য চান,FEEDBACK,review,bn,product,2,product,0.997897744178772
+సేవ గురించి అభిప్రాయాన్ని పంపడంలో సహాయం కావాలి,FEEDBACK,review,te,product,2,product,0.729109525680542
+ஒரு சேவையைப் பற்றிய கருத்தை அனுப்ப உதவ வேண்டும்,FEEDBACK,review,ta,product,4,undefined,0.5440341234207153
+सेवेबद्दल फीडबॅक पाठवण्यात मदत हवी आहे,FEEDBACK,review,mr,product,3,shipping,0.9037206768989563
+I am trying to receive a compensation,REFUND,get_refund,en,billing,0,billing,0.9999982118606567
+मैं मुआवज़ा पाने की कोशिश कर रहा हूं,REFUND,get_refund,hi,billing,0,billing,0.9999619722366333
+আমি ক্ষতিপূরণ পাওয়ার চেষ্টা করছি,REFUND,get_refund,bn,billing,2,product,0.9926897883415222
+నేను పరిహారం అందుకోవడానికి ప్రయత్నిస్తున్నాను,REFUND,get_refund,te,billing,2,product,0.9165270328521729
+இழப்பீடு பெற முயற்சிக்கிறேன்,REFUND,get_refund,ta,billing,1,order,0.6967517733573914
+मी भरपाई मिळवण्याचा प्रयत्न करत आहे,REFUND,get_refund,mr,billing,2,product,0.7679632902145386
+where to see the bloody ETA of the order {{Order Number}},ORDER,track_order,en,order,1,order,0.9999887943267822
+ऑर्डर का खूनी ईटीए कहां देखें {{ऑर्डर नंबर}},ORDER,track_order,hi,order,4,undefined,0.7619863152503967
+অর্ডারের রক্তাক্ত ETA কোথায় দেখতে পাবেন {{অর্ডার নম্বর}},ORDER,track_order,bn,order,1,order,0.9416893124580383
+ఆర్డర్ {{ఆర్డర్ నంబర్}} యొక్క రక్తపాత ETAని ఎక్కడ చూడాలి,ORDER,track_order,te,order,0,billing,0.649915337562561
+{{ஆர்டர் எண்}} ஆர்டரின் இரத்தம் தோய்ந்த ETA ஐ எங்கே பார்ப்பது,ORDER,track_order,ta,order,4,undefined,0.9361260533332825
+ऑर्डरचा रक्तरंजित ETA कुठे पाहायचा {{ऑर्डर नंबर}},ORDER,track_order,mr,order,1,order,0.8383402824401855
+could you help me file a customer reclamation?,FEEDBACK,complaint,en,product,2,product,0.9999997615814209
+क्या आप ग्राहक पुनर्ग्रहण दाखिल करने में मेरी मदद कर सकते हैं?,FEEDBACK,complaint,hi,product,2,product,0.9444695115089417
+আপনি কি আমাকে একটি গ্রাহক পুনরুদ্ধার ফাইল করতে সাহায্য করতে পারেন?,FEEDBACK,complaint,bn,product,4,undefined,0.9541524648666382
+కస్టమర్ రిక్లమేషన్ ఫైల్ చేయడంలో మీరు నాకు సహాయం చేయగలరా?,FEEDBACK,complaint,te,product,4,undefined,0.9989022016525269
+வாடிக்கையாளர் மீட்டெடுப்பை தாக்கல் செய்ய எனக்கு உதவ முடியுமா?,FEEDBACK,complaint,ta,product,4,undefined,0.7835057377815247
+तुम्ही मला ग्राहक पुनर्प्राप्ती दाखल करण्यास मदत करू शकता?,FEEDBACK,complaint,mr,product,2,product,0.6725086569786072
+hepp seeing the bill from {{Person Name}},INVOICE,check_invoice,en,billing,0,billing,0.9999994039535522
+"हेप, {{व्यक्ति का नाम}} से बिल देख रहा हूँ",INVOICE,check_invoice,hi,billing,0,billing,0.8718522191047668
+হেপ {{ব্যক্তির নাম}} থেকে বিল দেখছেন,INVOICE,check_invoice,bn,billing,4,undefined,0.8793604373931885
+హెప్ప్ {{వ్యక్తి పేరు}} నుండి బిల్లును చూస్తున్నారు,INVOICE,check_invoice,te,billing,0,billing,0.9910528063774109
+ஹெப்ப் {{நபர் பெயர்}} இலிருந்து மசோதாவைப் பார்க்கிறார்,INVOICE,check_invoice,ta,billing,4,undefined,0.9383893609046936
+हेप {{Person Name}} चे बिल पाहत आहे,INVOICE,check_invoice,mr,billing,0,billing,0.9981677532196045
+help to check what hours customer assistance available is,CONTACT,contact_customer_service,en,undefined,4,undefined,0.9999996423721313
+यह जांचने में सहायता करें कि ग्राहक सहायता कितने घंटे उपलब्ध है,CONTACT,contact_customer_service,hi,undefined,4,undefined,0.999996542930603
+গ্রাহক সহায়তা কত ঘন্টা উপলব্ধ তা পরীক্ষা করতে সহায়তা করুন,CONTACT,contact_customer_service,bn,undefined,4,undefined,0.8410115242004395
+కస్టమర్ సహాయం ఏ గంటలలో అందుబాటులో ఉందో తనిఖీ చేయడంలో సహాయం చేయండి,CONTACT,contact_customer_service,te,undefined,4,undefined,0.9968234300613403
+வாடிக்கையாளர் உதவி எத்தனை மணிநேரம் கிடைக்கிறது என்பதைச் சரிபார்க்க உதவுங்கள்,CONTACT,contact_customer_service,ta,undefined,0,billing,0.858868420124054
+ग्राहक सहाय्य किती तास उपलब्ध आहे हे तपासण्यासाठी मदत,CONTACT,contact_customer_service,mr,undefined,3,shipping,0.7880966663360596
+i have got to get bill #37777 how to do it,INVOICE,get_invoice,en,billing,0,billing,1.0
+मुझे बिल #37777 प्राप्त करना है यह कैसे करना है,INVOICE,get_invoice,hi,billing,0,billing,0.9999922513961792
+আমি বিল #37777 পেতে হয়েছে কিভাবে এটা করতে হবে,INVOICE,get_invoice,bn,billing,0,billing,0.9999995231628418
+నేను బిల్లు #37777 పొందవలసి ఉంది దీన్ని ఎలా చేయాలో,INVOICE,get_invoice,te,billing,0,billing,0.9990687966346741
+நான் பில் #37777 பெற வேண்டும் அதை எப்படி செய்வது,INVOICE,get_invoice,ta,billing,0,billing,0.572607696056366
+मला बिल #37777 मिळवायचे आहे ते कसे करायचे,INVOICE,get_invoice,mr,billing,0,billing,0.9999985694885254
+can you help me reporting problems with online payment?,PAYMENT,payment_issue,en,billing,0,billing,0.9999998807907104
+क्या आप ऑनलाइन भुगतान से जुड़ी समस्याओं की रिपोर्ट करने में मेरी मदद कर सकते हैं?,PAYMENT,payment_issue,hi,billing,0,billing,0.9999914169311523
+আপনি কি আমাকে অনলাইন পেমেন্টের সমস্যা রিপোর্ট করতে সাহায্য করতে পারেন?,PAYMENT,payment_issue,bn,billing,0,billing,0.9864257574081421
+ఆన్‌లైన్ చెల్లింపులో సమస్యలను నివేదించడంలో మీరు నాకు సహాయం చేయగలరా?,PAYMENT,payment_issue,te,billing,2,product,0.5279356837272644
+ஆன்லைனில் பணம் செலுத்துவதில் உள்ள சிக்கல்களைப் புகாரளிக்க எனக்கு உதவ முடியுமா?,PAYMENT,payment_issue,ta,billing,1,order,0.8943884372711182
+तुम्ही मला ऑनलाइन पेमेंटच्या समस्यांची तक्रार करण्यास मदत करू शकता?,PAYMENT,payment_issue,mr,billing,0,billing,0.9992432594299316
+help to check what methods for delivery i have,DELIVERY,delivery_options,en,shipping,3,shipping,0.9999998807907104
+यह जांचने में सहायता करें कि मेरे पास डिलीवरी के लिए क्या तरीके हैं,DELIVERY,delivery_options,hi,shipping,3,shipping,0.9989352822303772
+আমার ডেলিভারির জন্য কি পদ্ধতি আছে তা পরীক্ষা করতে সাহায্য করুন,DELIVERY,delivery_options,bn,shipping,0,billing,0.9146783947944641
+డెలివరీ కోసం నా దగ్గర ఏ పద్ధతులు ఉన్నాయో తనిఖీ చేయడంలో సహాయపడండి,DELIVERY,delivery_options,te,shipping,4,undefined,0.8776960372924805
+என்னிடம் டெலிவரி செய்வதற்கான முறைகள் என்ன என்பதைச் சரிபார்க்க உதவுங்கள்,DELIVERY,delivery_options,ta,shipping,4,undefined,0.980575680732727
+माझ्याकडे वितरणासाठी कोणत्या पद्धती आहेत हे तपासण्यात मदत करा,DELIVERY,delivery_options,mr,shipping,1,order,0.7203180193901062
+I want assistance to check the goddamn payment methods,PAYMENT,check_payment_methods,en,billing,0,billing,0.999997615814209
+मैं भयानक भुगतान विधियों की जाँच करने में सहायता चाहता हूँ,PAYMENT,check_payment_methods,hi,billing,0,billing,0.9999997615814209
+আমি গডড্যাম পেমেন্ট পদ্ধতি পরীক্ষা করার জন্য সহায়তা চাই,PAYMENT,check_payment_methods,bn,billing,0,billing,0.8640260100364685
+గాడ్‌డామ్ పేమెంట్ మెథడ్స్‌ని చెక్ చేయడానికి నాకు సహాయం కావాలి,PAYMENT,check_payment_methods,te,billing,4,undefined,0.8547561168670654
+கடவுளே பணம் செலுத்தும் முறைகளைச் சரிபார்க்க எனக்கு உதவி தேவை,PAYMENT,check_payment_methods,ta,billing,4,undefined,0.8616045713424683
+मला गॉडडॅम पेमेंट पद्धती तपासण्यासाठी मदत हवी आहे,PAYMENT,check_payment_methods,mr,billing,0,billing,0.9440894722938538
+I cannot afford purchase {{Order Number}},ORDER,cancel_order,en,order,1,order,0.9999998807907104
+मैं {{ऑर्डर नंबर}} खरीदने में सक्षम नहीं हूं,ORDER,cancel_order,hi,order,1,order,0.9837088584899902
+আমি ক্রয় করতে পারি না {{অর্ডার নম্বর}},ORDER,cancel_order,bn,order,1,order,0.847670316696167
+నేను {{ఆర్డర్ నంబర్}} కొనుగోలు చేయలేను,ORDER,cancel_order,te,order,4,undefined,0.9671343564987183
+என்னால் வாங்க முடியாது {{ஆர்டர் எண்}},ORDER,cancel_order,ta,order,4,undefined,0.5702217817306519
+मला {{ऑर्डर नंबर}} खरेदी परवडत नाही,ORDER,cancel_order,mr,order,1,order,0.994716465473175
+error submitting my shipping address,SHIPPING,set_up_shipping_address,en,shipping,3,shipping,0.9999998807907104
+मेरा शिपिंग पता सबमिट करने में त्रुटि,SHIPPING,set_up_shipping_address,hi,shipping,3,shipping,0.9679521322250366
+আমার শিপিং ঠিকানা জমা দিতে ত্রুটি,SHIPPING,set_up_shipping_address,bn,shipping,3,shipping,0.9999573230743408
+నా షిప్పింగ్ చిరునామాను సమర్పించడంలో లోపం,SHIPPING,set_up_shipping_address,te,shipping,4,undefined,0.5352978110313416
+எனது ஷிப்பிங் முகவரியைச் சமர்ப்பிப்பதில் பிழை,SHIPPING,set_up_shipping_address,ta,shipping,4,undefined,0.9870079159736633
+माझा शिपिंग पत्ता सबमिट करताना त्रुटी,SHIPPING,set_up_shipping_address,mr,shipping,3,shipping,0.9698157906532288
+help to check how soon can I expect my shipment,DELIVERY,delivery_period,en,shipping,3,shipping,1.0
+यह जांचने में सहायता करें कि मैं कितनी जल्दी अपने शिपमेंट की उम्मीद कर सकता हूं,DELIVERY,delivery_period,hi,shipping,3,shipping,0.9999958276748657
+আমি কত তাড়াতাড়ি আমার চালান আশা করতে পারি তা পরীক্ষা করতে সাহায্য করুন,DELIVERY,delivery_period,bn,shipping,1,order,0.3604290187358856
+నా షిప్‌మెంట్‌ను నేను ఎంత త్వరగా ఆశించవచ్చో తనిఖీ చేయడంలో సహాయం చేయండి,DELIVERY,delivery_period,te,shipping,4,undefined,0.9303450584411621
+எனது கப்பலை எவ்வளவு விரைவில் எதிர்பார்க்கலாம் என்பதைச் சரிபார்க்க உதவுங்கள்,DELIVERY,delivery_period,ta,shipping,0,billing,0.4776341915130615
+मी माझ्या शिपमेंटची किती लवकर अपेक्षा करू शकतो हे तपासण्यात मदत करा,DELIVERY,delivery_period,mr,shipping,3,shipping,0.9999673366546631
+i do not know what i need to do to get my invoice #85632,INVOICE,get_invoice,en,billing,0,billing,1.0
+मुझे नहीं पता कि मुझे अपना चालान #85632 प्राप्त करने के लिए क्या करना होगा,INVOICE,get_invoice,hi,billing,0,billing,0.9857365489006042
+আমি জানি না আমার চালান #85632 পেতে আমাকে কি করতে হবে,INVOICE,get_invoice,bn,billing,0,billing,0.9970830082893372
+నా ఇన్‌వాయిస్ #85632 పొందడానికి నేను ఏమి చేయాలో నాకు తెలియదు,INVOICE,get_invoice,te,billing,0,billing,0.9147286415100098
+எனது விலைப்பட்டியல் #85632ஐப் பெற நான் என்ன செய்ய வேண்டும் என்று எனக்குத் தெரியவில்லை,INVOICE,get_invoice,ta,billing,0,billing,0.9896910190582275
+माझे इनव्हॉइस #85632 मिळविण्यासाठी मला काय करावे लागेल हे मला माहित नाही,INVOICE,get_invoice,mr,billing,0,billing,0.94574373960495
+can you help me recover the key of my profile?,ACCOUNT,recover_password,en,undefined,4,undefined,0.9999998807907104
+क्या आप मेरी प्रोफ़ाइल की कुंजी पुनर्प्राप्त करने में मेरी सहायता कर सकते हैं?,ACCOUNT,recover_password,hi,undefined,4,undefined,0.9996346235275269
+আপনি কি আমাকে আমার প্রোফাইলের চাবি পুনরুদ্ধার করতে সাহায্য করতে পারেন?,ACCOUNT,recover_password,bn,undefined,4,undefined,0.9996323585510254
+మీరు నా ప్రొఫైల్ కీని తిరిగి పొందడంలో నాకు సహాయం చేయగలరా?,ACCOUNT,recover_password,te,undefined,4,undefined,0.9962084293365479
+எனது சுயவிவரத்தின் சாவியை மீட்டெடுக்க எனக்கு உதவ முடியுமா?,ACCOUNT,recover_password,ta,undefined,1,order,0.6811869740486145
+तुम्ही मला माझ्या प्रोफाईलची की पुनर्प्राप्त करण्यात मदत करू शकता का?,ACCOUNT,recover_password,mr,undefined,4,undefined,0.9989781379699707
+how to correct some of the details on my user profile,ACCOUNT,edit_account,en,undefined,4,undefined,0.9999998807907104
+मेरी उपयोगकर्ता प्रोफ़ाइल पर कुछ विवरण कैसे ठीक करें,ACCOUNT,edit_account,hi,undefined,4,undefined,0.9999935626983643
+কিভাবে আমার ব্যবহারকারীর প্রোফাইলে কিছু বিবরণ সংশোধন করতে হয়,ACCOUNT,edit_account,bn,undefined,4,undefined,0.9978432655334473
+నా వినియోగదారు ప్రొఫైల్‌లోని కొన్ని వివరాలను ఎలా సరిదిద్దాలి,ACCOUNT,edit_account,te,undefined,4,undefined,0.9956183433532715
+எனது பயனர் சுயவிவரத்தில் உள்ள சில விவரங்களை எவ்வாறு சரிசெய்வது,ACCOUNT,edit_account,ta,undefined,4,undefined,0.6243758201599121
+माझ्या वापरकर्ता प्रोफाइलवरील काही तपशील कसे दुरुस्त करावे,ACCOUNT,edit_account,mr,undefined,4,undefined,0.9751494526863098
+i want help submitting a different delivery address,SHIPPING,set_up_shipping_address,en,shipping,3,shipping,0.9999997615814209
+मैं एक अलग डिलीवरी पता सबमिट करने में सहायता चाहता हूँ,SHIPPING,set_up_shipping_address,hi,shipping,3,shipping,0.8652524948120117
+আমি একটি ভিন্ন ডেলিভারি ঠিকানা জমা দিতে সাহায্য চাই,SHIPPING,set_up_shipping_address,bn,shipping,4,undefined,0.8917758464813232
+వేరే డెలివరీ చిరునామాను సమర్పించడంలో నాకు సహాయం కావాలి,SHIPPING,set_up_shipping_address,te,shipping,0,billing,0.47035497426986694
+வேறு டெலிவரி முகவரியைச் சமர்ப்பிக்க எனக்கு உதவ வேண்டும்,SHIPPING,set_up_shipping_address,ta,shipping,1,order,0.5128704309463501
+मला वेगळा डिलिव्हरी पत्ता सबमिट करण्यासाठी मदत हवी आहे,SHIPPING,set_up_shipping_address,mr,shipping,1,order,0.8329895734786987
+"I have bought some item, I have to cancel order {{Order Number}}",ORDER,cancel_order,en,order,1,order,1.0
+"मैंने कुछ वस्तु खरीदी है, मुझे ऑर्डर रद्द करना होगा {{ऑर्डर नंबर}}",ORDER,cancel_order,hi,order,1,order,0.999632716178894
+"আমি কিছু জিনিস কিনেছি, আমাকে অর্ডার বাতিল করতে হবে {{অর্ডার নম্বর}}",ORDER,cancel_order,bn,order,1,order,0.999932050704956
+"నేను కొంత వస్తువును కొనుగోలు చేసాను, నేను ఆర్డర్ {{ఆర్డర్ నంబర్}}ని రద్దు చేయాలి",ORDER,cancel_order,te,order,4,undefined,0.9765561819076538
+"நான் சில பொருட்களை வாங்கினேன், நான் ஆர்டரை ரத்து செய்ய வேண்டும் {{ஆர்டர் எண்}}",ORDER,cancel_order,ta,order,1,order,0.41655632853507996
+"मी काही वस्तू विकत घेतल्या आहेत, मला ऑर्डर रद्द करायची आहे {{ऑर्डर नंबर}}",ORDER,cancel_order,mr,order,1,order,0.9996122717857361
+help me creating a freemium account,ACCOUNT,create_account,en,undefined,4,undefined,0.9999998807907104
+फ्रीमियम खाता बनाने में मेरी सहायता करें,ACCOUNT,create_account,hi,undefined,4,undefined,0.7511431574821472
+একটি freemium অ্যাকাউন্ট তৈরি করতে আমাকে সাহায্য করুন,ACCOUNT,create_account,bn,undefined,4,undefined,0.9999991655349731
+ఫ్రీమియం ఖాతాను సృష్టించడంలో నాకు సహాయపడండి,ACCOUNT,create_account,te,undefined,4,undefined,0.947695255279541
+ஃப்ரீமியம் கணக்கை உருவாக்க எனக்கு உதவுங்கள்,ACCOUNT,create_account,ta,undefined,1,order,0.6650733351707458
+मला फ्रीमियम खाते तयार करण्यात मदत करा,ACCOUNT,create_account,mr,undefined,0,billing,0.9298856258392334
+I have to delete several items from purchase {{Order Number}},ORDER,change_order,en,order,1,order,1.0
+मुझे खरीदारी से कई आइटम हटाने होंगे {{ऑर्डर नंबर}},ORDER,change_order,hi,order,1,order,0.9999995231628418
+আমাকে ক্রয় থেকে বেশ কিছু আইটেম মুছতে হবে {{Order Number}},ORDER,change_order,bn,order,1,order,1.0
+నేను కొనుగోలు నుండి అనేక అంశాలను తొలగించాలి {{ఆర్డర్ నంబర్}},ORDER,change_order,te,order,4,undefined,0.5209881663322449
+நான் {{ஆர்டர் எண்}} வாங்கியதில் இருந்து பல பொருட்களை நீக்க வேண்டும்,ORDER,change_order,ta,order,1,order,0.6290137767791748
+मला खरेदीवरून अनेक आयटम हटवावे लागतील {{ऑर्डर नंबर}},ORDER,change_order,mr,order,1,order,0.957133948802948
+I need help restoring the PIN of my profile,ACCOUNT,recover_password,en,undefined,4,undefined,1.0
+मुझे अपनी प्रोफ़ाइल का पिन पुनर्स्थापित करने में सहायता चाहिए,ACCOUNT,recover_password,hi,undefined,4,undefined,0.9999910593032837
+আমার প্রোফাইলের পিন পুনরুদ্ধার করতে আমার সাহায্য দরকার৷,ACCOUNT,recover_password,bn,undefined,4,undefined,0.983470618724823
+నా ప్రొఫైల్ పిన్‌ని పునరుద్ధరించడంలో నాకు సహాయం కావాలి,ACCOUNT,recover_password,te,undefined,4,undefined,0.9998031258583069
+எனது சுயவிவரத்தின் பின்னை மீட்டமைக்க எனக்கு உதவி தேவை,ACCOUNT,recover_password,ta,undefined,1,order,0.4903910756111145
+मला माझ्या प्रोफाइलचा पिन पुनर्संचयित करण्यासाठी मदत हवी आहे,ACCOUNT,recover_password,mr,undefined,4,undefined,0.9876744151115417
+"I have to shop a few of your product, how could I do it?",ORDER,place_order,en,order,1,order,0.9999996423721313
+"मुझे आपके कुछ उत्पाद खरीदने हैं, मैं यह कैसे कर सकता हूँ?",ORDER,place_order,hi,order,1,order,0.9999990463256836
+"আমি আপনার কিছু পণ্য কেনাকাটা করতে হবে, আমি কিভাবে এটা করতে পারি?",ORDER,place_order,bn,order,1,order,0.9999741315841675
+"నేను మీ ఉత్పత్తిలో కొన్నింటిని షాపింగ్ చేయాలి, నేను దీన్ని ఎలా చేయగలను?",ORDER,place_order,te,order,1,order,0.4248230755329132
+"உங்கள் தயாரிப்பில் சிலவற்றை நான் ஷாப்பிங் செய்ய வேண்டும், அதை நான் எப்படி செய்வது?",ORDER,place_order,ta,order,0,billing,0.5927818417549133
+"मला तुमच्या काही उत्पादनांची खरेदी करायची आहे, मी ते कसे करू शकतो?",ORDER,place_order,mr,order,1,order,0.9881884455680847
+"I need to unsubscribe from the newsletter, can yyou help me?",SUBSCRIPTION,newsletter_subscription,en,product,2,product,1.0
+"मुझे न्यूज़लेटर से सदस्यता समाप्त करने की आवश्यकता है, क्या आप मेरी मदद कर सकते हैं?",SUBSCRIPTION,newsletter_subscription,hi,product,2,product,0.9671598672866821
+"আমাকে নিউজলেটার থেকে সদস্যতা ত্যাগ করতে হবে, আপনি কি আমাকে সাহায্য করতে পারেন?",SUBSCRIPTION,newsletter_subscription,bn,product,2,product,0.9584587216377258
+"నేను వార్తాలేఖ నుండి చందాను తీసివేయాలి, మీరు నాకు సహాయం చేయగలరా?",SUBSCRIPTION,newsletter_subscription,te,product,2,product,0.9312530159950256
+"நான் செய்திமடலில் இருந்து குழுவிலக வேண்டும், நீங்கள் எனக்கு உதவ முடியுமா?",SUBSCRIPTION,newsletter_subscription,ta,product,1,order,0.7649422883987427
+"मला वृत्तपत्रातून सदस्यता रद्द करायची आहे, तुम्ही मला मदत करू शकता का?",SUBSCRIPTION,newsletter_subscription,mr,product,2,product,0.5795912146568298
+i want help to close my {{Account Category}} accouny,ACCOUNT,delete_account,en,undefined,4,undefined,0.9999998807907104
+मैं अपना {{खाता श्रेणी}} खाता बंद करने में सहायता चाहता हूं,ACCOUNT,delete_account,hi,undefined,4,undefined,0.9938283562660217
+আমি আমার {{Account Category}} অ্যাকাউন্ট বন্ধ করতে সাহায্য চাই৷,ACCOUNT,delete_account,bn,undefined,4,undefined,0.9999998807907104
+నా {{ఖాతా వర్గం}} అకౌనీని మూసివేయడానికి నాకు సహాయం కావాలి,ACCOUNT,delete_account,te,undefined,4,undefined,0.9868255257606506
+எனது {{கணக்கு வகை}} கணக்கை மூடுவதற்கு எனக்கு உதவி தேவை,ACCOUNT,delete_account,ta,undefined,1,order,0.7031235694885254
+मला माझे {{खाते वर्ग}} खाते बंद करण्यासाठी मदत हवी आहे,ACCOUNT,delete_account,mr,undefined,4,undefined,0.9943907856941223
+assistance opening user account,ACCOUNT,registration_problems,en,undefined,4,undefined,1.0
+उपयोगकर्ता खाता खोलने में सहायता,ACCOUNT,registration_problems,hi,undefined,4,undefined,0.9999995231628418
+ব্যবহারকারী অ্যাকাউন্ট খোলার সহায়তা,ACCOUNT,registration_problems,bn,undefined,4,undefined,0.9999996423721313
+వినియోగదారు ఖాతాను తెరవడంలో సహాయం,ACCOUNT,registration_problems,te,undefined,4,undefined,0.9971156120300293
+பயனர் கணக்கைத் திறக்க உதவி,ACCOUNT,registration_problems,ta,undefined,0,billing,0.5747390985488892
+वापरकर्ता खाते उघडण्यासाठी मदत,ACCOUNT,registration_problems,mr,undefined,0,billing,0.5474516153335571
+can I see what payment methods are available?,PAYMENT,check_payment_methods,en,billing,0,billing,0.9999998807907104
+क्या मैं देख सकता हूँ कि कौन सी भुगतान विधियाँ उपलब्ध हैं?,PAYMENT,check_payment_methods,hi,billing,0,billing,0.9999994039535522
+আমি কি পেমেন্ট পদ্ধতি উপলব্ধ দেখতে পারি?,PAYMENT,check_payment_methods,bn,billing,0,billing,0.999445378780365
+ఏ చెల్లింపు పద్ధతులు అందుబాటులో ఉన్నాయో నేను చూడగలనా?,PAYMENT,check_payment_methods,te,billing,0,billing,0.9999598264694214
+என்ன கட்டண முறைகள் உள்ளன என்று நான் பார்க்க முடியுமா?,PAYMENT,check_payment_methods,ta,billing,4,undefined,0.5318703055381775
+मी कोणत्या पेमेंट पद्धती उपलब्ध आहेत ते पाहू शकतो का?,PAYMENT,check_payment_methods,mr,billing,0,billing,0.9998500347137451
+I want assistance removing my goddamn platinum account,ACCOUNT,delete_account,en,undefined,4,undefined,1.0
+मैं अपना प्लैटिनम खाता हटाने में सहायता चाहता हूँ,ACCOUNT,delete_account,hi,undefined,4,undefined,0.9998916387557983
+আমি আমার প্ল্যাটিনাম অ্যাকাউন্ট সরানোর জন্য সহায়তা চাই,ACCOUNT,delete_account,bn,undefined,4,undefined,0.9999978542327881
+నా గాడ్‌డామ్ ప్లాటినం ఖాతాను తొలగించడంలో నాకు సహాయం కావాలి,ACCOUNT,delete_account,te,undefined,4,undefined,0.9999960660934448
+எனது பிளாட்டினம் கணக்கை அகற்ற எனக்கு உதவி தேவை,ACCOUNT,delete_account,ta,undefined,4,undefined,0.47909486293792725
+मला माझे प्लॅटिनम खाते काढून टाकण्यासाठी मदत हवी आहे,ACCOUNT,delete_account,mr,undefined,4,undefined,0.9023815989494324
+I can't speak iwth an operator,CONTACT,contact_human_agent,en,undefined,4,undefined,0.9999992847442627
+मैं किसी ऑपरेटर से बात नहीं कर सकता,CONTACT,contact_human_agent,hi,undefined,4,undefined,0.9999990463256836
+আমি একজন অপারেটরের সাথে কথা বলতে পারি না,CONTACT,contact_human_agent,bn,undefined,4,undefined,0.9999992847442627
+నేను ఆపరేటర్‌తో మాట్లాడలేను,CONTACT,contact_human_agent,te,undefined,4,undefined,0.9999457597732544
+ஒரு ஆபரேட்டருடன் என்னால் பேச முடியாது,CONTACT,contact_human_agent,ta,undefined,0,billing,0.38361138105392456
+मी ऑपरेटरशी बोलू शकत नाही,CONTACT,contact_human_agent,mr,undefined,4,undefined,0.9999973773956299
+I am waiting for a restitution of {{Currency Symbol}}{{Refund Amount}},REFUND,track_refund,en,billing,0,billing,1.0
+मैं {{मुद्रा चिह्न}}{{रिफंड राशि}} की बहाली की प्रतीक्षा कर रहा हूं,REFUND,track_refund,hi,billing,0,billing,0.9989280104637146
+আমি {{মুদ্রার প্রতীক}}{{রিফান্ডের পরিমাণ}} পুনরুদ্ধারের জন্য অপেক্ষা করছি,REFUND,track_refund,bn,billing,0,billing,0.9776408076286316
+నేను {{కరెన్సీ సింబల్}}{{వాపసు మొత్తం}} తిరిగి చెల్లింపు కోసం ఎదురు చూస్తున్నాను,REFUND,track_refund,te,billing,0,billing,0.9996206760406494
+{{நாணயச் சின்னம்}}{{பணம் திரும்பப்பெறும் தொகை}} திரும்பப் பெறுவதற்காகக் காத்திருக்கிறேன்,REFUND,track_refund,ta,billing,4,undefined,0.5871813297271729
+मी {{चलन चिन्ह}}{{परतावा रक्कम}} परत मिळण्याची वाट पाहत आहे,REFUND,track_refund,mr,billing,0,billing,0.9728014469146729
+new {{Account Category}} acount for wife,ACCOUNT,create_account,en,undefined,4,undefined,0.9999996423721313
+पत्नी के लिए नया {{खाता श्रेणी}} खाता,ACCOUNT,create_account,hi,undefined,4,undefined,0.9998691082000732
+স্ত্রীর জন্য নতুন {{Account Category}} অ্যাকাউন্ট,ACCOUNT,create_account,bn,undefined,4,undefined,0.9999998807907104
+భార్య కోసం కొత్త {{Account Category}} ఖాతా,ACCOUNT,create_account,te,undefined,4,undefined,0.9999997615814209
+மனைவிக்கான புதிய {{Account Category}} கணக்கு,ACCOUNT,create_account,ta,undefined,4,undefined,0.999992847442627
+पत्नीसाठी नवीन {{खाते श्रेणी}} खाते,ACCOUNT,create_account,mr,undefined,4,undefined,0.9711777567863464
+check cancellation fee,CANCEL,check_cancellation_fee,en,order,1,order,0.9999986886978149
+चेक रद्दीकरण शुल्क,CANCEL,check_cancellation_fee,hi,order,1,order,0.9396418929100037
+চেক বাতিল ফি,CANCEL,check_cancellation_fee,bn,order,1,order,0.9472314715385437
+చెక్ రద్దు రుసుము,CANCEL,check_cancellation_fee,te,order,4,undefined,0.9192852973937988
+காசோலை ரத்து கட்டணம்,CANCEL,check_cancellation_fee,ta,order,1,order,0.8085294365882874
+रद्दीकरण शुल्क तपासा,CANCEL,check_cancellation_fee,mr,order,1,order,0.9985054731369019
+i dont know how to report signup issues,ACCOUNT,registration_problems,en,undefined,4,undefined,0.9999998807907104
+मैं नहीं जानता कि साइनअप समस्याओं की रिपोर्ट कैसे करूं,ACCOUNT,registration_problems,hi,undefined,4,undefined,0.9932708144187927
+সাইন আপ সমস্যা কিভাবে রিপোর্ট করতে হয় আমি জানি না,ACCOUNT,registration_problems,bn,undefined,4,undefined,0.9993010759353638
+సైన్ అప్ సమస్యలను ఎలా నివేదించాలో నాకు తెలియదు,ACCOUNT,registration_problems,te,undefined,4,undefined,0.9974844455718994
+பதிவுச் சிக்கல்களை எப்படிப் புகாரளிப்பது என்று எனக்குத் தெரியவில்லை,ACCOUNT,registration_problems,ta,undefined,3,shipping,0.7918018102645874
+मला साइनअप समस्यांची तक्रार कशी करावी हे माहित नाही,ACCOUNT,registration_problems,mr,undefined,4,undefined,0.994852602481842
+I have to make a consumer reclamation against your company,FEEDBACK,complaint,en,product,2,product,1.0
+मुझे आपकी कंपनी के विरुद्ध उपभोक्ता सुधार करना है,FEEDBACK,complaint,hi,product,2,product,0.9998586177825928
+আমাকে আপনার কোম্পানির বিরুদ্ধে একটি ভোক্তা পুনরুদ্ধার করতে হবে,FEEDBACK,complaint,bn,product,2,product,0.9999924898147583
+నేను మీ కంపెనీకి వ్యతిరేకంగా వినియోగదారుని పునరుద్ధరించాలి,FEEDBACK,complaint,te,product,2,product,0.9835593104362488
+உங்கள் நிறுவனத்திற்கு எதிராக நான் ஒரு நுகர்வோர் மறுசீரமைப்பு செய்ய வேண்டும்,FEEDBACK,complaint,ta,product,0,billing,0.5818513631820679
+मला तुमच्या कंपनीच्या विरोधात ग्राहक पुनरावृत्ती करावी लागेल,FEEDBACK,complaint,mr,product,2,product,0.9998942613601685
+update information on {{Account Category}} account,ACCOUNT,edit_account,en,undefined,4,undefined,1.0
+{{खाता श्रेणी}} खाते पर जानकारी अद्यतन करें,ACCOUNT,edit_account,hi,undefined,4,undefined,0.9999905824661255
+{{Account Category}} অ্যাকাউন্টের তথ্য আপডেট করুন,ACCOUNT,edit_account,bn,undefined,4,undefined,1.0
+{{Account Category}} ఖాతాపై సమాచారాన్ని నవీకరించండి,ACCOUNT,edit_account,te,undefined,4,undefined,0.9999996423721313
+{{Account Category}} கணக்கில் தகவலைப் புதுப்பிக்கவும்,ACCOUNT,edit_account,ta,undefined,4,undefined,0.9998282194137573
+{{Account Category}} खात्यावरील माहिती अपडेट करा,ACCOUNT,edit_account,mr,undefined,4,undefined,0.999997615814209
+checking status of order {{Order Number}},ORDER,track_order,en,order,1,order,0.9999998807907104
+ऑर्डर की स्थिति की जाँच करना {{ऑर्डर नंबर}},ORDER,track_order,hi,order,1,order,0.9484605193138123
+অর্ডারের স্থিতি পরীক্ষা করা হচ্ছে {{অর্ডার নম্বর}},ORDER,track_order,bn,order,3,shipping,0.6343603730201721
+ఆర్డర్ స్థితిని తనిఖీ చేస్తోంది {{ఆర్డర్ నంబర్}},ORDER,track_order,te,order,4,undefined,0.9930865168571472
+ஆர்டரின் நிலையைச் சரிபார்க்கிறது {{ஆர்டர் எண்}},ORDER,track_order,ta,order,4,undefined,0.8393223285675049
+ऑर्डरची स्थिती तपासत आहे {{ऑर्डर क्रमांक}},ORDER,track_order,mr,order,4,undefined,0.7092567086219788
+I want assistance doing a purchase,ORDER,place_order,en,order,1,order,0.9999856948852539
+मुझे खरीदारी करने में सहायता चाहिए,ORDER,place_order,hi,order,1,order,0.9999065399169922
+আমি একটি ক্রয় করতে সহায়তা চাই,ORDER,place_order,bn,order,0,billing,0.43781983852386475
+కొనుగోలు చేయడంలో నాకు సహాయం కావాలి,ORDER,place_order,te,order,4,undefined,0.9381299614906311
+வாங்குவதற்கு எனக்கு உதவி வேண்டும்,ORDER,place_order,ta,order,0,billing,0.9500188231468201
+मला खरेदीसाठी मदत हवी आहे,ORDER,place_order,mr,order,0,billing,0.9271227121353149
